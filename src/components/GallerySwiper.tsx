@@ -11,7 +11,7 @@ import Link from "next/link";
 
 export default function GallerySwiper() {
   return (
-    <div className="w-full h-full px-2 relative overflow-hidden rounded-md">
+    <div className="w-full h-full relative overflow-hidden">
       <div
         className="rounded-t-md absolute top-0 z-50 w-[96%] h-30
         bg-linear-to-t

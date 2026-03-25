@@ -398,7 +398,7 @@ const HomePage = () => {
                   Akad Nikah
                 </p>
                 <p className="text-xs text-gray-500 font-serif">
-                  {"{"}Reserved for you{"}"}
+                  {"("}Reserved for you{")"}
                 </p>
                 <p className="text-xs text-gray-500 font-serif">
                   Sunday, June 7, 2026
