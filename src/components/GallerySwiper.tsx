@@ -13,14 +13,14 @@ export default function GallerySwiper() {
   return (
     <div className="w-full h-full relative overflow-hidden">
       <div
-        className="rounded-t-md absolute top-0 z-50 w-[96%] h-30
+        className="rounded-t-md absolute top-0 z-50 w-full h-30
         bg-linear-to-t
         from-white/0  via-red-900/10
         to-red-900/40
         "
       ></div>
       <div
-        className="rounded-b-md absolute bottom-0 z-50 w-[96%] h-30
+        className="rounded-b-md absolute bottom-0 z-50 w-full h-30
         bg-linear-to-b
        from-white/0  via-red-900/10
         to-red-900/40
@@ -45,12 +45,12 @@ export default function GallerySwiper() {
         }}
         navigation={false} // matikan arrow
         modules={[Autoplay, Pagination]}
-        className="mySwiper flex items-center justify-center rounded-md"
+        className="mySwiper flex items-center justify-center"
       >
         {/* Slide 1 - horizontal */}
         <SwiperSlide key={1}>
           <div className="flex flex-row gap-0 w-full h-[60vh]">
-            <div className="relative flex-1 rounded-lg shadow animate-fadeIn">
+            <div className="relative flex-1  shadow animate-fadeIn">
               <Image
                 src="/images/templateimage.jpeg"
                 alt="Tangkas & Ais 1"
@@ -61,7 +61,7 @@ export default function GallerySwiper() {
                 height={500}
               />
             </div>
-            <div className="relative flex-1 rounded-lg shadow animate-fadeIn">
+            <div className="relative flex-1  shadow animate-fadeIn">
               <Image
                 src="/images/templateimage.jpeg"
                 alt="Tangkas & Ais 2"
@@ -78,7 +78,7 @@ export default function GallerySwiper() {
         {/* Slide 2 - vertical */}
         <SwiperSlide key={2}>
           <div className="flex flex-col gap-0 w-full h-[60vh]">
-            <div className="relative flex-1 rounded-lg shadow animate-fadeIn h-1/5">
+            <div className="relative flex-1  shadow animate-fadeIn h-1/5">
               <Image
                 src="/images/templateimage.jpeg"
                 alt="Tangkas & Ais 3"
@@ -89,7 +89,7 @@ export default function GallerySwiper() {
                 height={500}
               />
             </div>
-            <div className="relative flex-1 rounded-lg shadow animate-fadeIn h-1/5">
+            <div className="relative flex-1  shadow animate-fadeIn h-1/5">
               <Image
                 src="/images/templateimage.jpeg"
                 alt="Tangkas & Ais 4"
@@ -107,7 +107,7 @@ export default function GallerySwiper() {
         <SwiperSlide key={3}>
           <div className="grid grid-cols-2 gap-0 w-full h-[60vh]">
             <div className="flex flex-col gap-0 h-[60vh]">
-              <div className="relative flex-1 rounded-lg shadow animate-fadeIn h-1/5">
+              <div className="relative flex-1  shadow animate-fadeIn h-1/5">
                 <Image
                   src="/images/templateimage.jpeg"
                   alt="Tangkas & Ais 5"
@@ -118,7 +118,7 @@ export default function GallerySwiper() {
                   height={500}
                 />
               </div>
-              <div className="relative flex-1 rounded-lg shadow animate-fadeIn h-1/5">
+              <div className="relative flex-1  shadow animate-fadeIn h-1/5">
                 <Image
                   src="/images/templateimage.jpeg"
                   alt="Tangkas & Ais 6"
@@ -130,7 +130,7 @@ export default function GallerySwiper() {
                 />
               </div>
             </div>
-            <div className="relative flex-1 rounded-lg shadow animate-fadeIn">
+            <div className="relative flex-1  shadow animate-fadeIn">
               <Image
                 src="/images/templateimage.jpeg"
                 alt="Tangkas & Ais 6"
@@ -147,7 +147,7 @@ export default function GallerySwiper() {
         {/* Slide 4 - vertical */}
         <SwiperSlide key={4}>
           <div className="flex flex-col gap-0 w-full h-[60vh]">
-            <div className="relative flex-1 rounded-lg shadow animate-fadeIn h-1/5">
+            <div className="relative flex-1  shadow animate-fadeIn h-1/5">
               <Image
                 src="/images/templateimage.jpeg"
                 alt="Tangkas & Ais 3"
@@ -158,7 +158,7 @@ export default function GallerySwiper() {
                 height={500}
               />
             </div>
-            <div className="relative flex-1 rounded-lg shadow animate-fadeIn h-1/5">
+            <div className="relative flex-1  shadow animate-fadeIn h-1/5">
               <Image
                 src="/images/templateimage.jpeg"
                 alt="Tangkas & Ais 4"
@@ -175,7 +175,7 @@ export default function GallerySwiper() {
         {/* Slide 5 - horizontal */}
         <SwiperSlide key={5}>
           <div className="grid grid-cols-2 gap-0 w-full h-[60vh]">
-            <div className="relative flex-1 rounded-lg shadow animate-fadeIn">
+            <div className="relative flex-1  shadow animate-fadeIn">
               <Image
                 src="/images/templateimage.jpeg"
                 alt="Tangkas & Ais 6"
@@ -187,7 +187,7 @@ export default function GallerySwiper() {
               />
             </div>
             <div className="flex flex-col gap-0 h-[60vh]">
-              <div className="relative flex-1 rounded-lg shadow animate-fadeIn h-1/5">
+              <div className="relative flex-1  shadow animate-fadeIn h-1/5">
                 <Image
                   src="/images/templateimage.jpeg"
                   alt="Tangkas & Ais 5"
@@ -198,7 +198,7 @@ export default function GallerySwiper() {
                   height={500}
                 />
               </div>
-              <div className="relative flex-1 rounded-lg shadow animate-fadeIn h-1/5">
+              <div className="relative flex-1  shadow animate-fadeIn h-1/5">
                 <Image
                   src="/images/templateimage.jpeg"
                   alt="Tangkas & Ais 6"
@@ -215,7 +215,7 @@ export default function GallerySwiper() {
 
         {/* Slide 6 - horizontal */}
         <SwiperSlide key={6}>
-          <div className="w-full h-[60vh] relative rounded-lg shadow animate-fadeIn">
+          <div className="w-full h-[60vh] relative  shadow animate-fadeIn">
             <Image
               src="/images/templateimage.jpeg"
               alt="Tangkas & Ais 6"
