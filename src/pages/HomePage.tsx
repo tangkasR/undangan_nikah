@@ -446,7 +446,7 @@ const HomePage = () => {
                   Our Special <br /> Day
                 </p>
               </motion.div>
-              <div className="w-[1.5px] bg-red-950 absolute left-10 top-148 h-146 rounded-full"></div>
+              <div className="w-[1.5px] bg-red-950 absolute left-10 top-148 h-144 rounded-full"></div>
               <div className="w-full bg-red-950 absolute left-0 top-280 h-0.5"></div>
               <div className=" text-right mt-30 pr-6">
                 <p className="font-serif font-semibold text-lg text-red-950 mb-2">
@@ -475,9 +475,10 @@ const HomePage = () => {
                 <p className="font-serif font-semibold text-lg text-red-950 mb-2">
                   Location
                 </p>
-                <p className="mb-6 text-[11px] text-gray-500 font-serif max-w-[40%] ml-auto">
-                  Jl. Kirangga, Jetis Wetan, Pacarejo, Kec. Semanu, Kabupaten
-                  Gunungkidul, Daerah Istimewa Yogyakarta
+                <p className="mb-6 text-[11px] text-gray-500 font-serif">
+                  Jl. Kirangga, Jetis Wetan, Pacarejo, <br />
+                  Kec. Semanu, Kabupaten Gunungkidul, <br />
+                  Daerah Istimewa Yogyakarta
                 </p>
                 <button
                   onClick={() =>
