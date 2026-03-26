@@ -20,28 +20,28 @@ const slideFade: Variants = {
     opacity: 0,
     height: 0,
     overflow: "hidden",
-    transition: { duration: 2, ease: "easeOut" },
-    animationDelay: 2,
+    transition: { duration: 1.5, ease: "easeOut" },
+    animationDelay: 1,
   },
   visible: {
     opacity: 1,
     height: "auto",
     overflow: "hidden",
-    transition: { duration: 2, ease: "easeOut" },
-    animationDelay: 2,
+    transition: { duration: 1.5, ease: "easeOut" },
+    animationDelay: 1,
   },
   exit: {
     opacity: 0,
     height: 0,
     overflow: "hidden",
-    transition: { duration: 2, ease: "easeOut" },
-    animationDelay: 2,
+    transition: { duration: 1.5, ease: "easeOut" },
+    animationDelay: 1,
   },
 };
 
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 60 },
-  visible: { opacity: 1, y: 0, transition: { duration: 1, ease: "easeOut" } },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
 };
 
 const smoothReveal: Variants = {
@@ -50,7 +50,7 @@ const smoothReveal: Variants = {
     y: 80,
     scale: 0.9,
     filter: "blur(2px)",
-    transition: { duration: 1.5, ease: "easeOut" },
+    transition: { duration: 1, ease: "easeOut" },
   },
   visible: {
     opacity: 1,
@@ -58,7 +58,7 @@ const smoothReveal: Variants = {
     scale: 1,
     filter: "blur(0px)",
     transition: {
-      duration: 1.5,
+      duration: 1,
       ease: "easeOut",
     },
   },
@@ -129,6 +129,7 @@ const HomePage = () => {
                   alt="hero"
                   fill
                   className="object-cover"
+                  sizes="100vw"
                 />
               </motion.div>
 
@@ -194,6 +195,7 @@ const HomePage = () => {
                   alt="gallery"
                   fill
                   className="object-cover"
+                  sizes="100vw"
                 />
               </motion.div>
               <div className="max-w-[60%] mx-auto flex flex-col justify-center items-center text-left w-full">
@@ -261,6 +263,7 @@ const HomePage = () => {
                     alt="gallery"
                     fill
                     className="object-cover"
+                    sizes="100vw"
                   />
                 </motion.div>
                 <div className="font-serif font-normal text-gray-700 text-right mt-12 pr-6">
@@ -305,6 +308,7 @@ const HomePage = () => {
                     alt="gallery"
                     fill
                     className="object-cover"
+                    sizes="100vw"
                   />
                   <div className="px-4 pb-2 absolute bottom-0 flex justify-between w-full text-white">
                     <p className={`font-serif text-xs`}>Puspitalia Dwi Aisah</p>
@@ -337,6 +341,7 @@ const HomePage = () => {
                     alt="gallery"
                     fill
                     className="object-cover"
+                    sizes="100vw"
                   />
                   <div className="px-4 pb-2 absolute bottom-0 flex justify-between w-full text-white">
                     <p className="text-gray-200 flex items-center gap-1 text-[9px] font-normal">
@@ -372,6 +377,7 @@ const HomePage = () => {
                   alt="gallery"
                   fill
                   className="object-cover"
+                  sizes="100vw"
                 />
                 <p
                   className={`font-moontime z-40 text-6xl w-full -rotate-10 absolute left-8 -bottom-20 text-red-900`}
@@ -432,6 +438,7 @@ const HomePage = () => {
                   alt="gallery"
                   fill
                   className="object-cover rounded-lb-lg"
+                  sizes="100vw"
                 />
                 <p
                   className={`font-moontime text-left z-20 mb-4 text-red-900 absolute -left-12 -bottom-38 text-5xl w-full`}
@@ -534,6 +541,7 @@ const HomePage = () => {
                       alt="gallery"
                       fill
                       className="object-cover"
+                      sizes="100vw"
                     />
                   </motion.div>
                   <motion.div className="relative ms-auto w-full h-110 overflow-hidden">
@@ -543,6 +551,7 @@ const HomePage = () => {
                       alt="gallery"
                       fill
                       className="object-cover"
+                      sizes="100vw"
                     />
                   </motion.div>
                 </div>
