@@ -50,7 +50,7 @@ const GalleryPage = () => {
           exit="exit"
           variants={slideFade}
         >
-          <div className="overflow-x-hidden min-h-screen md:min-h-[80vh] w-full flex flex-col justify-evenly">
+          <div className="overflow-x-hidden min-h-screen w-full flex flex-col justify-evenly">
             <div className="text-center px-8">
               <p
                 className={`${dancingScript.className} text-xs font-semibold text-gray-500 mb-2`}

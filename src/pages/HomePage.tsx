@@ -19,36 +19,37 @@ const slideFade: Variants = {
     opacity: 0,
     height: 0,
     overflow: "hidden",
-    transition: { duration: 1.5, ease: "easeOut" },
+    transition: { duration: 2, ease: "easeOut" },
     animationDelay: 2,
   },
   visible: {
     opacity: 1,
     height: "auto",
     overflow: "hidden",
-    transition: { duration: 1.5, ease: "easeOut" },
+    transition: { duration: 2, ease: "easeOut" },
     animationDelay: 2,
   },
   exit: {
     opacity: 0,
     height: 0,
     overflow: "hidden",
-    transition: { duration: 1.5, ease: "easeOut" },
+    transition: { duration: 2, ease: "easeOut" },
     animationDelay: 2,
   },
 };
 
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 60 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
 };
 
 const smoothReveal: Variants = {
   hidden: {
     opacity: 0,
     y: 80,
-    scale: 0.98,
-    filter: "blur(10px)",
+    scale: 0.9,
+    filter: "blur(2px)",
+    transition: { duration: 1, ease: "easeOut" },
   },
   visible: {
     opacity: 1,
@@ -101,13 +102,11 @@ const HomePage = () => {
   }, []);
 
   useEffect(() => {
-    scrollRef.current?.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
+    window.scrollTo({ top: 0, behavior: "instant" });
   }, [currentSection]);
+
   return (
-    <div className="overflow-x-hidden">
+    <div className="overflow-x-hidden" ref={scrollRef}>
       {/* SECTION CLOSE INVITATION */}
       <AnimatePresence>
         {showClose && !isOpen && (
@@ -119,10 +118,11 @@ const HomePage = () => {
             variants={slideFade}
           >
             {/* SECTION 1 */}
-            <section className="pb-[40%] relative h-screen md:h-[90vh] flex items-end justify-center text-white text-center overflow-hidden">
+            <section className="pb-[40%] relative h-screen flex items-end justify-center text-white text-center overflow-hidden">
               <motion.div style={{ y }} className="absolute inset-0">
                 <Image
-                  src="https://images.unsplash.com/photo-1519741497674-611481863552"
+                  loading="eager"
+                  src="/images/hero.jpg"
                   alt="hero"
                   fill
                   className="object-cover"
@@ -175,7 +175,7 @@ const HomePage = () => {
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
-              className="p-6 min-h-screen md:min-h-[80vh] flex flex-col justify-center"
+              className="p-6 min-h-screen flex flex-col justify-center"
             >
               <motion.div className="relative h-110 rounded-lg overflow-hidden">
                 <p
@@ -184,7 +184,8 @@ const HomePage = () => {
                   Tangkas & Ais
                 </p>
                 <Image
-                  src="https://images.unsplash.com/photo-1519741497674-611481863552"
+                  loading="eager"
+                  src="/images/hero.jpg"
                   alt="gallery"
                   fill
                   className="object-cover"
@@ -205,7 +206,7 @@ const HomePage = () => {
                 <button
                   onClick={() => {
                     setTimeout(
-                      () => window.scrollTo({ top: 0, behavior: "smooth" }),
+                      () => window.scrollTo({ top: 0, behavior: "instant" }),
                       600
                     );
                     setTimeout(() => setIsOpen(true), 600);
@@ -229,51 +230,45 @@ const HomePage = () => {
             animate="visible"
             exit="exit"
             variants={slideFade}
-            ref={scrollRef}
-            className="overflow-y-scroll scroll-smooth"
+            className="scroll-smooth"
           >
             {/* SECTION 3 */}
             {currentSection === 3 && (
               <motion.section
-                variants={smoothReveal}
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true }}
-                className="min-h-screen relative w-full mt-20"
+                className="min-h-screen relative flex items-center justify-center w-full py-6"
               >
-                <p
-                  className={`-rotate-2 font-caitlin text-red-900 absolute left-4 -top-10 text-5xl w-full`}
-                >
-                  Tangkas <br /> Ais
-                </p>
-                <div className="w-[1.5px] bg-red-900 absolute left-10 top-20 h-94"></div>
-                <div className="w-full bg-red-950 absolute left-0 top-100 h-0.5"></div>
-                <motion.div className="relative ms-auto w-[78%] h-110 rounded-l-lg overflow-hidden">
-                  <Image
-                    src="https://images.unsplash.com/photo-1519741497674-611481863552"
-                    alt="gallery"
-                    fill
-                    className="object-cover"
-                  />
-                </motion.div>
-                <div className="font-serif font-normal text-gray-700 text-right mt-12 pr-6">
-                  <p className="text-xs">At last, the moment has arrived.</p>
-                  <p className="text-xs">We’re ready to begin our forever.</p>
-                  <p className="mb-4 text-xs">We’re tying the knot!</p>
-                  <p className="text-red-900 font-semibold text-sm">
-                    #ForeverWithYou
+                <div className="relative h-fit w-full">
+                  <p
+                    className={`-rotate-2 font-caitlin text-red-900 absolute left-4 -top-10 text-5xl w-full`}
+                  >
+                    Tangkas <br /> Ais
                   </p>
+                  <div className="w-[1.5px] bg-red-900 absolute left-10 top-20 h-94"></div>
+                  <div className="w-full bg-red-950 absolute left-0 top-100 h-0.5"></div>
+                  <motion.div className="relative ms-auto w-[78%] h-110 rounded-l-lg overflow-hidden">
+                    <Image
+                      loading="eager"
+                      src="/images/hero.jpg"
+                      alt="gallery"
+                      fill
+                      className="object-cover"
+                    />
+                  </motion.div>
+                  <div className="font-serif font-normal text-gray-700 text-right mt-12 pr-6">
+                    <p className="text-xs">At last, the moment has arrived.</p>
+                    <p className="text-xs">We’re ready to begin our forever.</p>
+                    <p className="mb-4 text-xs">We’re tying the knot!</p>
+                    <p className="text-red-900 font-semibold text-sm">
+                      #ForeverWithYou
+                    </p>
+                  </div>
                 </div>
-
                 <button
                   onClick={() => {
-                    setCurrentSection(4);
-                    setTimeout(() => {
-                      scrollRef.current?.scrollTo({
-                        top: 0,
-                        behavior: "instant",
-                      });
-                    }, 600);
+                    setTimeout(() => setCurrentSection(4), 600);
                   }}
                   className="absolute bottom-12 left-20 -translate-x-1/2 flex flex-col items-center gap-1 text-red-900"
                 >
@@ -301,6 +296,7 @@ const HomePage = () => {
                   className="relative w-full pt-20"
                 >
                   <Image
+                    loading="eager"
                     src="/images/imglogo.png"
                     alt="gallery"
                     width={500}
@@ -315,7 +311,8 @@ const HomePage = () => {
 
                   <motion.div className="mt-16 relative ms-auto w-full h-110 overflow-hidden">
                     <Image
-                      src="https://images.unsplash.com/photo-1519741497674-611481863552"
+                      loading="eager"
+                      src="/images/hero.jpg"
                       alt="gallery"
                       fill
                       className="object-cover"
@@ -342,11 +339,12 @@ const HomePage = () => {
                   initial="hidden"
                   whileInView="visible"
                   viewport={{ once: true }}
-                  className=" min-h-screen relative w-full"
+                  className="relative w-full pb-20"
                 >
                   <motion.div className="mt-16 relative ms-auto w-full h-110 overflow-hidden">
                     <Image
-                      src="https://images.unsplash.com/photo-1519741497674-611481863552"
+                      loading="eager"
+                      src="/images/hero.jpg"
                       alt="gallery"
                       fill
                       className="object-cover"
@@ -369,13 +367,7 @@ const HomePage = () => {
 
                   <button
                     onClick={() => {
-                      setCurrentSection(5);
-                      setTimeout(() => {
-                        scrollRef.current?.scrollTo({
-                          top: 0,
-                          behavior: "instant",
-                        });
-                      }, 600);
+                      setTimeout(() => setCurrentSection(5), 600);
                     }}
                     className="absolute bottom-12 left-20 -translate-x-1/2 flex flex-col items-center gap-1 text-red-900"
                   >
@@ -400,11 +392,12 @@ const HomePage = () => {
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true }}
-                className="min-h-screen pb-24  relative w-full"
+                className="min-h-screen pb-20  relative w-full"
               >
                 <motion.div className="relative ms-auto w-full h-110 ">
                   <Image
-                    src="https://images.unsplash.com/photo-1519741497674-611481863552"
+                    loading="eager"
+                    src="/images/hero.jpg"
                     alt="gallery"
                     fill
                     className="object-cover"
@@ -449,13 +442,7 @@ const HomePage = () => {
 
                 <button
                   onClick={() => {
-                    setCurrentSection(6);
-                    setTimeout(() => {
-                      scrollRef.current?.scrollTo({
-                        top: 0,
-                        behavior: "instant",
-                      });
-                    }, 600);
+                    setTimeout(() => setCurrentSection(6), 600);
                   }}
                   className="absolute bottom-12 left-20 -translate-x-1/2 flex flex-col items-center gap-1 text-red-900"
                 >
@@ -487,7 +474,8 @@ const HomePage = () => {
                 <div className="w-[1.5px] bg-red-950 absolute left-10 top-20 h-94"></div>
                 <motion.div className="relative ms-auto w-[80%] h-110 rounded-l-lg">
                   <Image
-                    src="https://images.unsplash.com/photo-1519741497674-611481863552"
+                    loading="eager"
+                    src="/images/hero.jpg"
                     alt="gallery"
                     fill
                     className="object-cover rounded-lb-lg"
@@ -558,13 +546,7 @@ const HomePage = () => {
                 </div>
                 <button
                   onClick={() => {
-                    setCurrentSection(7);
-                    setTimeout(() => {
-                      scrollRef.current?.scrollTo({
-                        top: 0,
-                        behavior: "instant",
-                      });
-                    }, 600);
+                    setTimeout(() => setCurrentSection(7), 600);
                   }}
                   className="absolute bottom-12 left-20 -translate-x-1/2 flex flex-col items-center gap-1 text-red-900"
                 >
@@ -593,6 +575,7 @@ const HomePage = () => {
                 <div className="relative h-fit w-full">
                   <div className="absolute z-40 top-50 w-full">
                     <Image
+                      loading="eager"
                       src="/images/imglogowhite.png"
                       alt="gallery"
                       width={500}
@@ -603,7 +586,8 @@ const HomePage = () => {
                   <div className="grid grid-cols-2">
                     <motion.div className="mt-16 relative ms-auto w-full h-110 overflow-hidden">
                       <Image
-                        src="https://images.unsplash.com/photo-1519741497674-611481863552"
+                        loading="eager"
+                        src="/images/hero.jpg"
                         alt="gallery"
                         fill
                         className="object-cover"
@@ -611,7 +595,8 @@ const HomePage = () => {
                     </motion.div>
                     <motion.div className="relative ms-auto w-full h-110 overflow-hidden">
                       <Image
-                        src="https://images.unsplash.com/photo-1519741497674-611481863552"
+                        loading="eager"
+                        src="/images/hero.jpg"
                         alt="gallery"
                         fill
                         className="object-cover"
