@@ -12,16 +12,16 @@ import { FiHome } from "react-icons/fi";
 
 export default function GallerySwiper() {
   return (
-    <div className="w-full h-full relative overflow-hidden">
+    <div className="w-full h-full relative overflow-hidden bg-black">
       <div
-        className="rounded-t-md absolute top-0 z-50 w-full h-30
+        className="absolute top-0 z-50 w-full h-30
         bg-linear-to-t
         from-white/0  via-red-900/10
         to-red-900/40
         "
       ></div>
       <div
-        className="rounded-b-md absolute bottom-0 z-50 w-full h-30
+        className="absolute bottom-0 z-50 w-full h-30
         bg-linear-to-b
        from-white/0  via-red-900/10
         to-red-900/40
@@ -66,31 +66,31 @@ export default function GallerySwiper() {
         }}
         navigation={false} // matikan arrow
         modules={[Autoplay, Pagination]}
-        className="mySwiper flex items-center justify-center"
+        className="mySwiper flex items-center justify-center "
       >
         {/* Slide 1 - horizontal */}
         <SwiperSlide key={1}>
-          <div className="flex flex-row gap-0 w-full h-[60vh]">
-            <div className="relative flex-1  shadow animate-fadeIn">
+          <div className="grid grid-cols-2 w-full h-[60vh]">
+            <div className="relative shadow animate-fadeIn w-full">
               <Image
                 src="/images/templateimage.jpeg"
                 alt="Tangkas & Ais 1"
                 className="object-cover w-full h-full"
                 sizes="100vw"
                 loading="eager"
-                width={500}
-                height={500}
+                width={1000}
+                height={1000}
               />
             </div>
-            <div className="relative flex-1  shadow animate-fadeIn">
+            <div className="relative shadow animate-fadeIn w-full">
               <Image
                 src="/images/templateimage.jpeg"
                 alt="Tangkas & Ais 2"
                 className="object-cover w-full h-full"
                 sizes="100vw"
                 loading="eager"
-                width={500}
-                height={500}
+                width={1000}
+                height={1000}
               />
             </div>
           </div>

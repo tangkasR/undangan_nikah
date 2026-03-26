@@ -70,8 +70,8 @@ export default function RootLayout({
         />
       </head>
       <body className="scroll-smooth min-h-full flex flex-col">
-        <div className=" bg-white md:bg-linear-to-b md:from-pink-50 md:to-pink-100 min-h-screen flex items-center justify-center">
-          <div className=" w-full max-w-md mx-auto bg-white shadow overflow-y-auto scroll-smooth">
+        <div className="bg-linear-to-br from-red-50 via-white to-red-50 min-h-screen flex items-center justify-center">
+          <div className="w-full max-w-lg mx-auto  overflow-y-auto scroll-smooth">
             {/* AUDIO */}
             <audio ref={audioRef} loop>
               <source src="/backsound.mp3" type="audio/mpeg" />

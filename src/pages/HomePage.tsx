@@ -40,7 +40,7 @@ const slideFade: Variants = {
 
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 60 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
+  visible: { opacity: 1, y: 0, transition: { duration: 1, ease: "easeOut" } },
 };
 
 const smoothReveal: Variants = {
@@ -49,7 +49,7 @@ const smoothReveal: Variants = {
     y: 80,
     scale: 0.9,
     filter: "blur(2px)",
-    transition: { duration: 1, ease: "easeOut" },
+    transition: { duration: 1.5, ease: "easeOut" },
   },
   visible: {
     opacity: 1,
@@ -57,7 +57,7 @@ const smoothReveal: Variants = {
     scale: 1,
     filter: "blur(0px)",
     transition: {
-      duration: 1,
+      duration: 1.5,
       ease: "easeOut",
     },
   },
@@ -235,10 +235,11 @@ const HomePage = () => {
             {/* SECTION 3 */}
             {currentSection === 3 && (
               <motion.section
+                variants={smoothReveal}
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true }}
-                className="min-h-screen relative flex items-center justify-center w-full py-6"
+                className="min-h-screen relative flex items-center justify-center w-full py-20"
               >
                 <div className="relative h-fit w-full">
                   <p
@@ -268,7 +269,7 @@ const HomePage = () => {
                 </div>
                 <button
                   onClick={() => {
-                    setTimeout(() => setCurrentSection(4), 600);
+                    setTimeout(() => setCurrentSection(4), 300);
                   }}
                   className="absolute bottom-12 left-20 -translate-x-1/2 flex flex-col items-center gap-1 text-red-900"
                 >
@@ -367,7 +368,7 @@ const HomePage = () => {
 
                   <button
                     onClick={() => {
-                      setTimeout(() => setCurrentSection(5), 600);
+                      setTimeout(() => setCurrentSection(5), 300);
                     }}
                     className="absolute bottom-12 left-20 -translate-x-1/2 flex flex-col items-center gap-1 text-red-900"
                   >
@@ -442,7 +443,7 @@ const HomePage = () => {
 
                 <button
                   onClick={() => {
-                    setTimeout(() => setCurrentSection(6), 600);
+                    setTimeout(() => setCurrentSection(6), 300);
                   }}
                   className="absolute bottom-12 left-20 -translate-x-1/2 flex flex-col items-center gap-1 text-red-900"
                 >
@@ -522,7 +523,15 @@ const HomePage = () => {
                     Jl. Raya Semanu, Gunung Kidul
                   </p>
 
-                  <button className="cursor-pointer mb-10 w-fit px-6 py-2 rounded bg-red-900 text-white text-xs font-bold">
+                  <button
+                    onClick={() =>
+                      window.open(
+                        "https://maps.app.goo.gl/3t7kpVXTEMmr6ecR8",
+                        "_blank"
+                      )
+                    }
+                    className="cursor-pointer mb-10 w-fit px-6 py-2 rounded bg-red-900 text-white text-xs font-bold"
+                  >
                     SEE LOCATION
                   </button>
 
@@ -546,7 +555,7 @@ const HomePage = () => {
                 </div>
                 <button
                   onClick={() => {
-                    setTimeout(() => setCurrentSection(7), 600);
+                    setTimeout(() => setCurrentSection(7), 300);
                   }}
                   className="absolute bottom-12 left-20 -translate-x-1/2 flex flex-col items-center gap-1 text-red-900"
                 >
