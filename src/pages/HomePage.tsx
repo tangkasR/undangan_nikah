@@ -447,7 +447,7 @@ const HomePage = () => {
                 </p>
               </motion.div>
               <div className="w-[1.5px] bg-red-950 absolute left-10 top-148 h-130 rounded-full"></div>
-              <div className="w-full bg-red-950 absolute left-0 top-266 h-0.5"></div>
+              <div className="w-full bg-red-950 absolute left-0 top-274 h-0.5"></div>
               <div className=" text-right mt-30 pr-6">
                 <p className="font-serif font-semibold text-lg text-red-950 mb-2">
                   Akad Nikah
