@@ -179,7 +179,7 @@ const HomePage = () => {
             >
               <motion.div className="relative h-110 rounded-lg overflow-hidden">
                 <p
-                  className={`font-caitlin mb-4 text-white absolute bottom-2 w-full text-center z-20`}
+                  className={`font-caitlin text-white absolute bottom-2 w-full text-center z-20`}
                 >
                   Tangkas & Ais
                 </p>
@@ -275,7 +275,7 @@ const HomePage = () => {
                       });
                     }, 600);
                   }}
-                  className="absolute bottom-6 left-20 -translate-x-1/2 flex flex-col items-center gap-1 text-red-900"
+                  className="absolute bottom-12 left-20 -translate-x-1/2 flex flex-col items-center gap-1 text-red-900"
                 >
                   <span className="text-[10px] tracking-widest">NEXT</span>
 
@@ -320,7 +320,7 @@ const HomePage = () => {
                       fill
                       className="object-cover"
                     />
-                    <div className="px-2 absolute bottom-0 flex justify-between w-full text-white">
+                    <div className="px-1 absolute bottom-0 flex justify-between w-full text-white">
                       <p className={`font-serif text-xs mt-1.5`}>
                         Puspitalia Dwi Aisah
                       </p>
@@ -351,7 +351,7 @@ const HomePage = () => {
                       fill
                       className="object-cover"
                     />
-                    <div className="px-2 absolute bottom-0 flex justify-between w-full text-white">
+                    <div className="px-1 absolute bottom-0 flex justify-between w-full text-white">
                       <p className="text-gray-200 flex gap-1 text-[9px] font-normal items-center mt-2">
                         <GrInstagram className="text-[10px] mb-1" />{" "}
                         <span>@tangkasr_</span>
@@ -377,7 +377,7 @@ const HomePage = () => {
                         });
                       }, 600);
                     }}
-                    className="absolute bottom-6 left-20 -translate-x-1/2 flex flex-col items-center gap-1 text-red-900"
+                    className="absolute bottom-12 left-20 -translate-x-1/2 flex flex-col items-center gap-1 text-red-900"
                   >
                     <span className="text-[10px] tracking-widest">NEXT</span>
 
@@ -400,7 +400,7 @@ const HomePage = () => {
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true }}
-                className="min-h-screen pb-8  relative w-full"
+                className="min-h-screen pb-24  relative w-full"
               >
                 <motion.div className="relative ms-auto w-full h-110 ">
                   <Image
@@ -457,7 +457,7 @@ const HomePage = () => {
                       });
                     }, 600);
                   }}
-                  className="absolute bottom-6 left-20 -translate-x-1/2 flex flex-col items-center gap-1 text-red-900"
+                  className="absolute bottom-12 left-20 -translate-x-1/2 flex flex-col items-center gap-1 text-red-900"
                 >
                   <span className="text-[10px] tracking-widest">NEXT</span>
 
@@ -566,7 +566,7 @@ const HomePage = () => {
                       });
                     }, 600);
                   }}
-                  className="absolute bottom-6 left-20 -translate-x-1/2 flex flex-col items-center gap-1 text-red-900"
+                  className="absolute bottom-12 left-20 -translate-x-1/2 flex flex-col items-center gap-1 text-red-900"
                 >
                   <span className="text-[10px] tracking-widest">NEXT</span>
 
