@@ -475,11 +475,9 @@ const HomePage = () => {
                 <p className="font-serif font-semibold text-lg text-red-950 mb-2">
                   Location
                 </p>
-                <p className="text-[11px] text-gray-500 font-serif">
-                  Alamat Rumah Sayang
-                </p>
-                <p className="text-[11px] text-gray-500 font-serif mb-6">
-                  Jl. Raya Semanu, Gunung Kidul
+                <p className="mb-6 text-[11px] text-gray-500 font-serif max-w-[40%] ml-auto">
+                  Jl. Kirangga, Jetis Wetan, Pacarejo, Kec. Semanu, Kabupaten
+                  Gunungkidul, Daerah Istimewa Yogyakarta
                 </p>
                 <button
                   onClick={() =>
