@@ -28,7 +28,7 @@ export default function RootLayout({
   useEffect(() => {
     const interval = setInterval(async () => {
       if (audioRef.current) {
-        audioRef.current.volume = 0;
+        audioRef.current.volume = 0.5;
         try {
           await audioRef.current.play();
           setIsPlaying(true);
