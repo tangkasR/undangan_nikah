@@ -2,12 +2,6 @@
 import GallerySwiper from "@/components/GallerySwiper";
 import { AnimatePresence, motion, Variants } from "framer-motion";
 import React, { useEffect, useState } from "react";
-import { Dancing_Script } from "next/font/google";
-
-const dancingScript = Dancing_Script({
-  subsets: ["latin"],
-  weight: ["400", "700"], // 400 = regular, 700 = bold
-});
 
 const slideFade: Variants = {
   hidden: {
@@ -52,14 +46,10 @@ const GalleryPage = () => {
         >
           <div className="overflow-x-hidden min-h-screen w-full flex flex-col justify-evenly">
             <div className="text-center px-8">
-              <p
-                className={`${dancingScript.className} text-xs font-semibold text-gray-500 mb-2`}
-              >
+              <p className={`font-moontime font-medium text-gray-900 mb-2`}>
                 A Moment to Remember
               </p>
-              <h1
-                className={`${dancingScript.className} text-4xl text-red-900 font-bold`}
-              >
+              <h1 className={`font-moontime text-4xl text-red-900 font-medium`}>
                 Tangkas & Ais
               </h1>
             </div>
@@ -69,7 +59,7 @@ const GalleryPage = () => {
             </div>
 
             <p
-              className={`${dancingScript.className} px-8 text-center text-xs font-semibold text-gray-600`}
+              className={`font-moontime px-8 text-center font-medium text-gray-900`}
             >
               From this day, forever begins
             </p>
