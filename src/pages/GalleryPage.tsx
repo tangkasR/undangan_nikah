@@ -55,7 +55,7 @@ const GalleryPage = () => {
               <p
                 className={`${dancingScript.className} text-xs font-semibold text-gray-500 mb-2`}
               >
-                Our Moment
+                A Moment to Remember
               </p>
               <h1
                 className={`${dancingScript.className} text-4xl text-red-900 font-bold`}
@@ -71,7 +71,7 @@ const GalleryPage = () => {
             <p
               className={`${dancingScript.className} px-8 text-center text-xs font-semibold text-gray-600`}
             >
-              To Have and to hold from this day forward
+              From this day, forever begins
             </p>
           </div>
         </motion.div>

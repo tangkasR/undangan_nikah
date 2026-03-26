@@ -7,6 +7,7 @@ import { Autoplay, Pagination } from "swiper/modules";
 // Swiper CSS
 import "swiper/css";
 import Link from "next/link";
+import { FiHome } from "react-icons/fi";
 // import "swiper/css/pagination";
 
 export default function GallerySwiper() {
@@ -28,10 +29,30 @@ export default function GallerySwiper() {
       ></div>
       <Link
         href="/"
+        className=" absolute bottom-5 right-5 z-999
+                    flex items-start gap-2
+                    px-4 pt-2 pb-1
+                    rounded-full
+                    backdrop-blur-md
+                    bg-white/10
+                    border border-white/20
+                    text-white text-xs font-medium
+                    shadow-lg
+                    transition-all duration-300
+                    hover:bg-white/20 hover:scale-105
+                    active:scale-95
+                    animate-fadeIn
+                  "
+      >
+        <FiHome />
+        <span className="mb-1">Home</span>
+      </Link>
+      {/* <Link
+        href="/"
         className="text-white font-sans text-xs absolute font-semibold bottom-0 z-50 right-3"
       >
         Back to home
-      </Link>
+      </Link> */}
       <Swiper
         slidesPerView={"auto"}
         spaceBetween={0}

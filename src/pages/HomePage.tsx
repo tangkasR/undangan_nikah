@@ -12,13 +12,7 @@ import dayjs from "dayjs";
 import Image from "next/image";
 import Link from "next/link";
 import { GrInstagram } from "react-icons/gr";
-
-import { Dancing_Script } from "next/font/google";
-
-const dancingScript = Dancing_Script({
-  subsets: ["latin"],
-  weight: ["400", "700"], // 400 = regular, 700 = bold
-});
+import { useRef } from "react";
 
 const slideFade: Variants = {
   hidden: {
@@ -49,7 +43,27 @@ const fadeUp: Variants = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } },
 };
 
+const smoothReveal: Variants = {
+  hidden: {
+    opacity: 0,
+    y: 80,
+    scale: 0.98,
+    filter: "blur(10px)",
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    filter: "blur(0px)",
+    transition: {
+      duration: 1,
+      ease: "easeOut",
+    },
+  },
+};
+
 const HomePage = () => {
+  const scrollRef = useRef<HTMLDivElement>(null);
   const [isOpen, setIsOpen] = useState(false);
   const [timeLeft, setTimeLeft] = useState({
     days: 0,
@@ -79,11 +93,19 @@ const HomePage = () => {
   }, []);
 
   const [showClose, setShowClose] = useState(false); // awalnya false
+  const [currentSection, setCurrentSection] = useState(3);
 
   useEffect(() => {
-    const timer = setTimeout(() => setShowClose(true), 300); // delay 600ms sebelum muncul
+    const timer = setTimeout(() => setShowClose(true), 300); // delay 10ms sebelum muncul
     return () => clearTimeout(timer);
   }, []);
+
+  useEffect(() => {
+    scrollRef.current?.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }, [currentSection]);
   return (
     <div className="overflow-x-hidden">
       {/* SECTION CLOSE INVITATION */}
@@ -133,15 +155,15 @@ const HomePage = () => {
               {/* CONTENT */}
               <div className="max-w-[80%]  w-full font-serif relative z-10 flex flex-col justify-center">
                 <h1 className="text-sm text-center mb-10 text-white">
-                  The wait is finnally over
+                  The wait is over, and forever begins 💍
                 </h1>
                 <div className="flex items-center">
                   <p className="text-xs text-gray-300 text-left text-nowrap p-0 m-0">
-                    From 10 Sep 2024
+                    From 10 Sep &apos;24
                   </p>
                   <div className="h-[0.1px] bg-gray-300 w-full mx-2" />
                   <p className="text-xs text-gray-300 text-right text-nowrap p-0 m-0">
-                    To 7 Jun 2026
+                    To 7 Jun &apos;26
                   </p>
                 </div>
               </div>
@@ -157,7 +179,7 @@ const HomePage = () => {
             >
               <motion.div className="relative h-110 rounded-lg overflow-hidden">
                 <p
-                  className={`${dancingScript.className} mb-4 text-white absolute bottom-2 text-2xl w-full text-center z-20`}
+                  className={`font-caitlin mb-4 text-white absolute bottom-2 w-full text-center z-20`}
                 >
                   Tangkas & Ais
                 </p>
@@ -172,12 +194,12 @@ const HomePage = () => {
                 <p className="font-serif mt-10 mb-2 text-xs w-full text-left">
                   Dear,
                 </p>
-                <h3 className="font-serif text-center w-full mb-4 font-semibold text-red-900">
+                <h3 className="font-serif text-center w-full mb-6 font-semibold text-red-900">
                   Family and Friends
                 </h3>
-                <p className="font-serif mb-8 text-xs w-full text-center">
-                  You are invited to witness <br /> and celebrate our special
-                  day
+                <p className="text-gray-600 font-serif mb-8 text-xs w-full text-center leading-5">
+                  You are warmly invited to witness <br /> and celebrate our
+                  special day.
                 </p>
 
                 <button
@@ -186,9 +208,9 @@ const HomePage = () => {
                       () => window.scrollTo({ top: 0, behavior: "smooth" }),
                       600
                     );
-                    setTimeout(() => setIsOpen(true), 600); // delay 0.3s
+                    setTimeout(() => setIsOpen(true), 600);
                   }}
-                  className="w-fit px-6 py-2 rounded bg-red-900 text-white text-xs font-semibold"
+                  className="cursor-pointer w-fit px-6 py-2 rounded bg-red-900 text-white text-xs font-semibold"
                 >
                   OPEN INVITATION
                 </button>
@@ -207,296 +229,406 @@ const HomePage = () => {
             animate="visible"
             exit="exit"
             variants={slideFade}
+            ref={scrollRef}
+            className="overflow-y-scroll scroll-smooth"
           >
             {/* SECTION 3 */}
-            <motion.section
-              variants={fadeUp}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              className="p-0 min-h-screen md:min-h-[70vh] relative w-full mt-20 md:mt-26"
-            >
-              <p
-                className={`${dancingScript.className} mb-4 text-red-900 absolute left-6 -top-12 text-5xl w-full`}
+            {currentSection === 3 && (
+              <motion.section
+                variants={smoothReveal}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                className="min-h-screen relative w-full mt-20"
               >
-                Tangkas <br /> Ais
-              </p>
-              <div className="w-[1.5px] bg-red-900 absolute left-10 top-26 h-90"></div>
-              <motion.div className="relative ms-auto w-[80%] h-110 rounded-l-lg overflow-hidden">
-                <Image
-                  src="https://images.unsplash.com/photo-1519741497674-611481863552"
-                  alt="gallery"
-                  fill
-                  className="object-cover"
-                />
-              </motion.div>
-              <div className="font-serif text-gray-500 text-right mt-12 pr-6">
-                <p className="text-xs">Yes, we finally set a date.</p>
-                <p className="text-xs">We{"'"}re going to make it official.</p>
-                <p className="mb-4 text-xs">We{"'"}re getting married!</p>
-                <p className="text-red-900 font-semibold">#TagUntukNikahan</p>
-              </div>
-            </motion.section>
-
-            {/* SECTION 4 */}
-            <motion.section
-              variants={fadeUp}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              className="relative w-full"
-            >
-              <p
-                className={`${dancingScript.className} text-center mb-10 text-red-900 text-8xl w-full`}
-              >
-                A <span className="-ml-14">T</span>
-              </p>
-              <div className="text-center mb-10 text-xs w-full">IMAGE AYAT</div>
-              <p className="font-serif text-gray-600 text-center text-xs w-full">
-                Along with our families, <br /> Joyfully invite you to share in
-                the celebration of our <br />
-                marriage
-              </p>
-
-              <motion.div className="mt-16 relative ms-auto w-full h-110 overflow-hidden">
-                <Image
-                  src="https://images.unsplash.com/photo-1519741497674-611481863552"
-                  alt="gallery"
-                  fill
-                  className="object-cover"
-                />
                 <p
-                  className={`${dancingScript.className} font-semibold absolute bottom-0 text-white w-full`}
+                  className={`-rotate-2 font-caitlin text-red-900 absolute left-4 -top-10 text-5xl w-full`}
                 >
-                  Puspitalia Dwi Aisah
+                  Tangkas <br /> Ais
                 </p>
-              </motion.div>
-              <div className="font-serif text-gray-600 font-medium text-right mt-8 px-6">
-                <p className="text-[11px]">The Daughter of</p>
-                <p className="text-[11px]">Mr. Father and</p>
-                <p className="mb-4 text-[11px]">Mrs. Mother</p>
-                <p className="flex gap-1 text-sm items-center text-red-900 font-semibold text-left">
-                  <GrInstagram /> <span className="text-[12px]">@aiskw_</span>
-                </p>
-              </div>
-            </motion.section>
-
-            {/* SECTION 5 */}
-            <motion.section
-              variants={fadeUp}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              className="relative w-full"
-            >
-              <motion.div className="mt-16 relative ms-auto w-full h-110 overflow-hidden">
-                <Image
-                  src="https://images.unsplash.com/photo-1519741497674-611481863552"
-                  alt="gallery"
-                  fill
-                  className="object-cover"
-                />
-                <p
-                  className={`${dancingScript.className} text-right font-semibold absolute bottom-0 text-white w-full`}
-                >
-                  Tangkas Risdianto
-                </p>
-              </motion.div>
-              <div className="font-serif text-gray-600 font-medium text-left mt-8 px-6">
-                <p className="text-[11px]">The Son of</p>
-                <p className="text-[11px]">Mr. Father and</p>
-                <p className="mb-4 text-[11px]">Mrs. Mother</p>
-                <p className="w-fit ms-auto flex gap-1 text-sm items-center text-red-900 font-semibold">
-                  <GrInstagram />{" "}
-                  <span className="text-[12px]">@tangkasr_</span>
-                </p>
-              </div>
-            </motion.section>
-
-            {/* SECTION 6 */}
-            <motion.section
-              variants={fadeUp}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              className=" min-h-screen md:min-h-full relative w-full mt-30"
-            >
-              <motion.div className="relative ms-auto w-full h-110 ">
-                <Image
-                  src="https://images.unsplash.com/photo-1519741497674-611481863552"
-                  alt="gallery"
-                  fill
-                  className="object-cover"
-                />
-                <p
-                  className={`${dancingScript.className} z-40 text-5xl text-center w-full -rotate-8 absolute -bottom-12 text-black`}
-                >
-                  How it all started
-                </p>
-              </motion.div>
-              <div
-                className={`font-serif text-gray-500 text-xs text-right mt-18 px-6 max-w-[70%] ms-auto`}
-              >
-                <p className="mb-4">
-                  We first met on a chilly day, introduced by a dear friend, yet
-                  the warmth of laughter filled the air. Every word we shared
-                  felt like sunlight melting the cold around us. In that moment,
-                  between jokes and shy smiles, something extraordinary began to
-                  bloom.
-                </p>
-                <p className="mb-4">
-                  A year passed, and we walked hand in hand through lessons of
-                  love and life. Together, we faced storms and scaled mountains,
-                  learning the strength of our hearts. Through every challenge,
-                  we discovered the courage to dream of a life united.
-                </p>
-                <p className="">
-                  Now, as we open a new chapter of our lives, our hearts are
-                  ready to pledge forever. We joyfully invite you to witness our
-                  vows and celebrate our wedding on{" "}
-                  <span className="font-bold text-red-900">June 7, 2026</span>,
-                  as we embrace a lifetime of love and laughter.
-                </p>
-              </div>
-
-              <p className="font-serif mt-16 px-8 flex gap-1 text-sm items-center text-red-900 font-semibold text-left">
-                <span className="text-[12px]">Est. 2024</span>
-                <span className="mx-2 h-px w-6 bg-red-900"></span>
-                <span className="text-[12px]">Est. 2026</span>
-              </p>
-            </motion.section>
-
-            {/* SECTION 7 */}
-            <motion.section
-              variants={fadeUp}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              className="p-0 min-h-screen md:min-h-screen relative w-full mt-30"
-            >
-              <p className="font-serif font-semibold z-20 mb-4 text-red-950 -rotate-90 absolute left-5 top-6 text-xs w-fit">
-                Details
-              </p>
-              <div className="w-[1.5px] bg-red-950 absolute left-10 top-18 h-90"></div>
-              <motion.div className="relative ms-auto w-[80%] h-110 rounded-l-lg">
-                <Image
-                  src="https://images.unsplash.com/photo-1519741497674-611481863552"
-                  alt="gallery"
-                  fill
-                  className="object-cover rounded-l-lg"
-                />
-                <p
-                  className={`${dancingScript.className} text-left z-20 mb-4 text-red-900 absolute -left-12 -bottom-36 text-5xl w-full`}
-                >
-                  Save the <br /> Date
-                </p>
-              </motion.div>
-              <div className="w-[1.5px] bg-red-950 absolute left-10 top-146 h-120"></div>
-              <div className="w-[80%] bg-red-950 absolute left-10 top-266 h-px"></div>
-              <div className=" text-right mt-30 pr-6">
-                <p className="font-serif font-semibold text-lg text-red-950 mb-2">
-                  Akad Nikah
-                </p>
-                <p className="text-xs text-gray-500 font-serif">
-                  {"("}Reserved for you{")"}
-                </p>
-                <p className="text-xs text-gray-500 font-serif">
-                  Sunday, June 7, 2026
-                </p>
-                <p className="text-xs text-gray-500 font-serif mb-10">
-                  09:00 WIB - finish
-                </p>
-
-                <p className="font-serif font-semibold text-lg text-red-950 mb-2">
-                  Reception
-                </p>
-                <p className="text-xs text-gray-500 font-serif">
-                  Sunday, June 7, 2026
-                </p>
-                <p className="text-xs text-gray-500 font-serif mb-10">
-                  11:00 WIB - finish
-                </p>
-
-                <p className="font-serif font-semibold text-lg text-red-950 mb-2">
-                  Location
-                </p>
-                <p className="text-xs text-gray-500 font-serif">
-                  Alamat Rumah Sayang
-                </p>
-                <p className="text-xs text-gray-500 font-serif mb-6">
-                  Jl. Raya Semanu, Gunung Kidul
-                </p>
-
-                <button className="mb-10 w-fit px-6 py-2 rounded bg-red-900 text-white text-xs font-bold">
-                  SEE LOCATION
-                </button>
-
-                <div className="font-sans font-semibold flex items-center gap-4 ms-auto w-fit mb-4 text-sm">
-                  <p>07</p>
-                  <p>|</p>
-                  <p>06</p>
-                  <p>|</p>
-                  <p>2026</p>
+                <div className="w-[1.5px] bg-red-900 absolute left-10 top-20 h-94"></div>
+                <div className="w-full bg-red-950 absolute left-0 top-100 h-0.5"></div>
+                <motion.div className="relative ms-auto w-[78%] h-110 rounded-l-lg overflow-hidden">
+                  <Image
+                    src="https://images.unsplash.com/photo-1519741497674-611481863552"
+                    alt="gallery"
+                    fill
+                    className="object-cover"
+                  />
+                </motion.div>
+                <div className="font-serif font-normal text-gray-700 text-right mt-12 pr-6">
+                  <p className="text-xs">At last, the moment has arrived.</p>
+                  <p className="text-xs">We’re ready to begin our forever.</p>
+                  <p className="mb-4 text-xs">We’re tying the knot!</p>
+                  <p className="text-red-900 font-semibold text-sm">
+                    #ForeverWithYou
+                  </p>
                 </div>
 
-                {/* ⏳ COUNTDOWN */}
+                <button
+                  onClick={() => {
+                    setCurrentSection(4);
+                    setTimeout(() => {
+                      scrollRef.current?.scrollTo({
+                        top: 0,
+                        behavior: "instant",
+                      });
+                    }, 600);
+                  }}
+                  className="absolute bottom-6 left-20 -translate-x-1/2 flex flex-col items-center gap-1 text-red-900"
+                >
+                  <span className="text-[10px] tracking-widest">NEXT</span>
+
+                  {/* animated arrow */}
+                  <motion.div
+                    animate={{ y: [0, 10, 0] }}
+                    transition={{ repeat: Infinity, duration: 1.2 }}
+                    className="w-5 h-5 border-b-2 border-r-2 rotate-45"
+                  />
+                </button>
+              </motion.section>
+            )}
+
+            {/* SECTION 4 */}
+            {currentSection === 4 && (
+              <>
                 <motion.section
-                  variants={fadeUp}
+                  id="section-4"
+                  variants={smoothReveal}
                   initial="hidden"
                   whileInView="visible"
                   viewport={{ once: true }}
-                  className="font-sans flex items-center ms-auto w-fit rounded bg-red-100"
+                  className="relative w-full pt-20"
                 >
-                  {Object.entries(timeLeft).map(([key, value]) => (
-                    <motion.div key={key} className="text-xs  px-2 py-1">
-                      <p className="font-semibold text-[11px]">{value}</p>
-                      <p className="capitalize text-[8px]">{key}</p>
-                    </motion.div>
-                  ))}
-                </motion.section>
-              </div>
-            </motion.section>
+                  <Image
+                    src="/images/imglogo.png"
+                    alt="gallery"
+                    width={500}
+                    height={500}
+                    className="object-contain bg-transparent w-1/3 mx-auto h-full mb-12"
+                  />
+                  <p className="font-normal font-serif text-gray-700 text-center text-xs w-full leading-5">
+                    Together with our beloved families, <br /> we warmly invite
+                    you to join us in celebrating <br />
+                    the beginning of our marriage.
+                  </p>
 
-            {/* SECTION 8 */}
-            <motion.section
-              variants={fadeUp}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              className="relative w-full mt-40 mb-20"
-            >
-              <p
-                className={`${dancingScript.className} absolute z-40 top-50 text-center text-white text-8xl w-full`}
-              >
-                A <span className="-ml-14">T</span>
-              </p>
-              <div className="grid grid-cols-2">
-                <motion.div className="mt-16 relative ms-auto w-full h-110 overflow-hidden">
-                  <Image
-                    src="https://images.unsplash.com/photo-1519741497674-611481863552"
-                    alt="gallery"
-                    fill
-                    className="object-cover"
-                  />
-                </motion.div>
-                <motion.div className="relative ms-auto w-full h-110 overflow-hidden">
-                  <Image
-                    src="https://images.unsplash.com/photo-1519741497674-611481863552"
-                    alt="gallery"
-                    fill
-                    className="object-cover"
-                  />
-                </motion.div>
-              </div>
-              <div className="flex justify-end px-6 -mt-10">
-                <Link
-                  href={"/gallery"}
-                  className="mb-10 w-fit px-6 py-2 rounded bg-red-900 text-white text-xs font-bold"
+                  <motion.div className="mt-16 relative ms-auto w-full h-110 overflow-hidden">
+                    <Image
+                      src="https://images.unsplash.com/photo-1519741497674-611481863552"
+                      alt="gallery"
+                      fill
+                      className="object-cover"
+                    />
+                    <div className="px-2 absolute bottom-0 flex justify-between w-full text-white">
+                      <p className={`font-serif text-xs mt-1.5`}>
+                        Puspitalia Dwi Aisah
+                      </p>
+                      <p className="text-gray-200 flex gap-1 text-[9px] font-normal items-center mt-2">
+                        <GrInstagram className="text-[10px] mb-1" />{" "}
+                        <span>@aiskw_</span>
+                      </p>
+                    </div>
+                  </motion.div>
+                  <div className="font-serif text-gray-700 font-medium text-left mt-6 px-6">
+                    <p className="text-[11px]">The Daughter of</p>
+                    <p className="text-[11px]">Mr. Father and</p>
+                    <p className="mb-4 text-[11px]">Mrs. Mother</p>
+                  </div>
+                </motion.section>
+                <motion.section
+                  id="section-5"
+                  variants={smoothReveal}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true }}
+                  className=" min-h-screen relative w-full"
                 >
-                  OPEN GALLERY
-                </Link>
-              </div>
-            </motion.section>
+                  <motion.div className="mt-16 relative ms-auto w-full h-110 overflow-hidden">
+                    <Image
+                      src="https://images.unsplash.com/photo-1519741497674-611481863552"
+                      alt="gallery"
+                      fill
+                      className="object-cover"
+                    />
+                    <div className="px-2 absolute bottom-0 flex justify-between w-full text-white">
+                      <p className="text-gray-200 flex gap-1 text-[9px] font-normal items-center mt-2">
+                        <GrInstagram className="text-[10px] mb-1" />{" "}
+                        <span>@tangkasr_</span>
+                      </p>
+                      <p className={`font-serif text-xs mt-1.5`}>
+                        Tangkas Risdianto
+                      </p>
+                    </div>
+                  </motion.div>
+                  <div className="font-serif text-gray-700 font-medium text-right mt-6 px-6">
+                    <p className="text-[11px]">The Son of</p>
+                    <p className="text-[11px]">Mr. Father and</p>
+                    <p className="mb-4 text-[11px]">Mrs. Mother</p>
+                  </div>
+
+                  <button
+                    onClick={() => {
+                      setCurrentSection(5);
+                      setTimeout(() => {
+                        scrollRef.current?.scrollTo({
+                          top: 0,
+                          behavior: "instant",
+                        });
+                      }, 600);
+                    }}
+                    className="absolute bottom-6 left-20 -translate-x-1/2 flex flex-col items-center gap-1 text-red-900"
+                  >
+                    <span className="text-[10px] tracking-widest">NEXT</span>
+
+                    {/* animated arrow */}
+                    <motion.div
+                      animate={{ y: [0, 10, 0] }}
+                      transition={{ repeat: Infinity, duration: 1.2 }}
+                      className="w-5 h-5 border-b-2 border-r-2 rotate-45"
+                    />
+                  </button>
+                </motion.section>
+              </>
+            )}
+
+            {/* SECTION 5 */}
+            {currentSection === 5 && (
+              <motion.section
+                id="section-6"
+                variants={smoothReveal}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                className="min-h-screen pb-8  relative w-full"
+              >
+                <motion.div className="relative ms-auto w-full h-110 ">
+                  <Image
+                    src="https://images.unsplash.com/photo-1519741497674-611481863552"
+                    alt="gallery"
+                    fill
+                    className="object-cover"
+                  />
+                  <p
+                    className={`font-caitlin z-40 text-4xl w-full -rotate-6 absolute left-1/6 -bottom-8 text-red-900`}
+                  >
+                    Our Love Story
+                  </p>
+                </motion.div>
+                <div
+                  className={`font-serif text-gray-500 text-xs text-right mt-16 px-6 max-w-[70%] ms-auto`}
+                >
+                  <p className="mb-4">
+                    We first met on a cool day, introduced by a friend, and
+                    somehow the conversation just flowed. What started with
+                    small talk quickly turned into laughter we didn’t want to
+                    end. From that moment, something simple yet special began
+                    between us.
+                  </p>
+                  <p className="mb-4">
+                    As time went by, we grew together through all kinds of
+                    moments— the easy ones and the challenging ones. We learned,
+                    we laughed, and we supported each other along the way.
+                    Slowly, we realized that this journey was one we wanted to
+                    continue side by side.
+                  </p>
+                  <p className="">
+                    Now, we’re ready to take the next step and start a new
+                    chapter together. With happy hearts, we invite you to
+                    celebrate this special moment with us on{" "}
+                    <span className="font-bold text-red-900">June 7, 2026</span>
+                    , as we begin our forever.
+                  </p>
+                </div>
+
+                <p className="font-serif mt-8  px-6 flex gap-1 items-center justify-end text-red-900 font-semibold">
+                  <span className="text-[10px]">Met ’24</span>
+                  <span className="h-px w-4 bg-red-900"></span>
+                  <span className="text-[10px]">Wed ’26</span>
+                </p>
+
+                <button
+                  onClick={() => {
+                    setCurrentSection(6);
+                    setTimeout(() => {
+                      scrollRef.current?.scrollTo({
+                        top: 0,
+                        behavior: "instant",
+                      });
+                    }, 600);
+                  }}
+                  className="absolute bottom-6 left-20 -translate-x-1/2 flex flex-col items-center gap-1 text-red-900"
+                >
+                  <span className="text-[10px] tracking-widest">NEXT</span>
+
+                  {/* animated arrow */}
+                  <motion.div
+                    animate={{ y: [0, 10, 0] }}
+                    transition={{ repeat: Infinity, duration: 1.2 }}
+                    className="w-5 h-5 border-b-2 border-r-2 rotate-45"
+                  />
+                </button>
+              </motion.section>
+            )}
+
+            {/* SECTION 6 */}
+            {currentSection === 6 && (
+              <motion.section
+                id="section-7"
+                variants={smoothReveal}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                className="min-h-screen pb-40  relative w-full"
+              >
+                <p className="rounded-full font-sans font-semibold z-20 mb-4 text-red-950 -rotate-90 absolute left-5 top-10 text-xs w-fit">
+                  The Day
+                </p>
+                <div className="w-[1.5px] bg-red-950 absolute left-10 top-20 h-94"></div>
+                <motion.div className="relative ms-auto w-[80%] h-110 rounded-l-lg">
+                  <Image
+                    src="https://images.unsplash.com/photo-1519741497674-611481863552"
+                    alt="gallery"
+                    fill
+                    className="object-cover rounded-lb-lg"
+                  />
+                  <p
+                    className={`font-caitlin text-left z-20 mb-4 text-red-900 absolute -left-12 -bottom-36 text-4xl w-full`}
+                  >
+                    Our Special <br /> Day
+                  </p>
+                </motion.div>
+                <div className="w-[1.5px] bg-red-950 absolute left-10 top-148 h-130 rounded-full"></div>
+                <div className="w-full bg-red-950 absolute left-0 top-266 h-0.5"></div>
+                <div className=" text-right mt-30 pr-6">
+                  <p className="font-serif font-semibold text-lg text-red-950 mb-2">
+                    Akad Nikah
+                  </p>
+                  <p className="text-[11px] text-gray-500 font-serif">
+                    {"("}Reserved for you{")"}
+                  </p>
+                  <p className="text-[11px] text-gray-500 font-serif">
+                    Sunday, June 7, 2026
+                  </p>
+                  <p className="text-[11px] text-gray-500 font-serif mb-10">
+                    09:00 WIB - finish
+                  </p>
+
+                  <p className="font-serif font-semibold text-lg text-red-950 mb-2">
+                    Reception
+                  </p>
+                  <p className="text-[11px] text-gray-500 font-serif">
+                    Sunday, June 7, 2026
+                  </p>
+                  <p className="text-[11px] text-gray-500 font-serif mb-10">
+                    11:00 WIB - finish
+                  </p>
+
+                  <p className="font-serif font-semibold text-lg text-red-950 mb-2">
+                    Location
+                  </p>
+                  <p className="text-[11px] text-gray-500 font-serif">
+                    Alamat Rumah Sayang
+                  </p>
+                  <p className="text-[11px] text-gray-500 font-serif mb-6">
+                    Jl. Raya Semanu, Gunung Kidul
+                  </p>
+
+                  <button className="cursor-pointer mb-10 w-fit px-6 py-2 rounded bg-red-900 text-white text-xs font-bold">
+                    SEE LOCATION
+                  </button>
+
+                  <div className="font-serif font-semibold flex items-center gap-4 ms-auto w-fit mb-4 text-sm">
+                    <p>07</p>
+                    <p>/</p>
+                    <p>06</p>
+                    <p>/</p>
+                    <p>2026</p>
+                  </div>
+
+                  {/* ⏳ COUNTDOWN */}
+                  <motion.section className="font-serif flex items-center ms-auto w-fit rounded text-red-900 bg-red-100">
+                    {Object.entries(timeLeft).map(([key, value]) => (
+                      <motion.div key={key} className="text-xs  px-2 py-1">
+                        <p className="font-semibold text-[11px]">{value}</p>
+                        <p className="capitalize text-[8px]">{key}</p>
+                      </motion.div>
+                    ))}
+                  </motion.section>
+                </div>
+                <button
+                  onClick={() => {
+                    setCurrentSection(7);
+                    setTimeout(() => {
+                      scrollRef.current?.scrollTo({
+                        top: 0,
+                        behavior: "instant",
+                      });
+                    }, 600);
+                  }}
+                  className="absolute bottom-6 left-20 -translate-x-1/2 flex flex-col items-center gap-1 text-red-900"
+                >
+                  <span className="text-[10px] tracking-widest">NEXT</span>
+
+                  {/* animated arrow */}
+                  <motion.div
+                    animate={{ y: [0, 10, 0] }}
+                    transition={{ repeat: Infinity, duration: 1.2 }}
+                    className="w-5 h-5 border-b-2 border-r-2 rotate-45"
+                  />
+                </button>
+              </motion.section>
+            )}
+
+            {/* SECTION 7 */}
+            {currentSection === 7 && (
+              <motion.section
+                id="section-8"
+                variants={smoothReveal}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                className="min-h-screen  flex justify-center items-center w-full"
+              >
+                <div className="relative h-fit w-full">
+                  <div className="absolute z-40 top-50 w-full">
+                    <Image
+                      src="/images/imglogowhite.png"
+                      alt="gallery"
+                      width={500}
+                      height={500}
+                      className="object-contain bg-transparent w-1/3 mx-auto h-full mb-12"
+                    />
+                  </div>
+                  <div className="grid grid-cols-2">
+                    <motion.div className="mt-16 relative ms-auto w-full h-110 overflow-hidden">
+                      <Image
+                        src="https://images.unsplash.com/photo-1519741497674-611481863552"
+                        alt="gallery"
+                        fill
+                        className="object-cover"
+                      />
+                    </motion.div>
+                    <motion.div className="relative ms-auto w-full h-110 overflow-hidden">
+                      <Image
+                        src="https://images.unsplash.com/photo-1519741497674-611481863552"
+                        alt="gallery"
+                        fill
+                        className="object-cover"
+                      />
+                    </motion.div>
+                  </div>
+                  <div className="flex justify-end px-6 -mt-10">
+                    <Link
+                      href={"/gallery"}
+                      className="cursor-pointer mb-10 w-fit px-6 py-2 rounded bg-red-900 text-white text-xs font-bold"
+                    >
+                      OPEN GALLERY
+                    </Link>
+                  </div>
+                </div>
+              </motion.section>
+            )}
           </motion.div>
         )}
       </AnimatePresence>

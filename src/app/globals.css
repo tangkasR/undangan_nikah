@@ -4,6 +4,10 @@
   --background: #ffffff;
   --foreground: #171717;
 }
+@theme {
+  --font-moontime: "Moontime", cursive;
+  --font-caitlin: "Caitlin", cursive;
+}
 
 @theme inline {
   --color-background: var(--background);
@@ -18,7 +22,9 @@
     --foreground: #ededed;
   }
 }
-
+html {
+  scroll-behavior: smooth;
+}
 body {
   background: var(--background);
   color: var(--foreground);
@@ -99,4 +105,18 @@ body {
 }
 .animate-fadeIn {
   animation: fadeIn 0.5s ease forwards;
+}
+
+@font-face {
+  font-family: "Moontime";
+  src: url("/fonts/moontime.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Caitlin";
+  src: url("/fonts/caitlin.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
 }
