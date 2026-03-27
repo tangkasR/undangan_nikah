@@ -41,7 +41,7 @@ const slideFade: Variants = {
 
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 60 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
+  visible: { opacity: 1, y: 0, transition: { duration: 1, ease: "easeOut" } },
 };
 
 const smoothReveal: Variants = {
@@ -119,6 +119,7 @@ const HomePage = () => {
             animate="visible"
             exit="exit"
             variants={slideFade}
+            className="overflow-x-hidden"
           >
             {/* SECTION 1 */}
             <section className="pb-[40%] relative h-screen flex items-end justify-center text-white text-center overflow-hidden">
@@ -217,7 +218,7 @@ const HomePage = () => {
                     );
                     setTimeout(() => setIsOpen(true), 600);
                   }}
-                  className="cursor-pointer w-fit px-6 py-2 rounded bg-red-900 text-white text-xs font-semibold"
+                  className="cursor-pointer w-fit px-4 py-2 rounded bg-red-900 text-white text-xs font-semibold"
                 >
                   OPEN INVITATION
                 </button>
@@ -236,7 +237,7 @@ const HomePage = () => {
             animate="visible"
             exit="exit"
             variants={slideFade}
-            className="scroll-smooth"
+            className="overflow-x-hidden"
           >
             {/* SECTION 3 */}
             <motion.section
@@ -266,7 +267,7 @@ const HomePage = () => {
                     sizes="100vw"
                   />
                 </motion.div>
-                <div className="font-serif font-normal text-gray-700 text-right mt-12 pr-6">
+                <div className="font-serif font-normal text-gray-600 text-right mt-12 pr-4">
                   <p className="text-xs">At last, the moment has arrived.</p>
                   <p className="text-xs">We’re ready to begin our forever.</p>
                   <p className="mb-4 text-xs">We’re tying the knot!</p>
@@ -296,12 +297,15 @@ const HomePage = () => {
                   height={500}
                   className="object-contain bg-transparent w-1/3 mx-auto h-full mb-12"
                 />
-                <p className="font-normal font-serif text-gray-700 text-center text-xs w-full leading-5">
+                <p className="font-normal font-serif text-gray-600 text-center text-xs w-full leading-5">
                   Together with our beloved families, <br /> we warmly invite
                   you to join us in celebrating <br />
                   the beginning of our marriage.
                 </p>
-                <motion.div className="mt-16 relative ms-auto w-full h-110 overflow-hidden">
+                <motion.div className="mt-24 relative ms-auto w-full h-110">
+                  <h1 className="font-moontime text-7xl text-red-900 absolute left-6 -top-10 z-50">
+                    Bride
+                  </h1>
                   <Image
                     loading="eager"
                     src="/images/hero.jpg"
@@ -318,7 +322,7 @@ const HomePage = () => {
                     </p>
                   </div>
                 </motion.div>
-                <div className="font-serif text-gray-700 font-medium text-left mt-6 px-6">
+                <div className="font-serif text-gray-600 font-medium text-left mt-6 px-4">
                   <p className="text-[11px]">The Daughter of</p>
                   <p className="text-[11px]">Mr. Father and</p>
                   <p className="mb-4 text-[11px]">Mrs. Mother</p>
@@ -334,7 +338,10 @@ const HomePage = () => {
                 viewport={{ once: false }}
                 className="relative w-full pb-20"
               >
-                <motion.div className="mt-16 relative ms-auto w-full h-110 overflow-hidden">
+                <motion.div className="mt-24 relative ms-auto w-full h-110">
+                  <h1 className="font-moontime text-7xl text-red-900 absolute right-4 -top-10 z-50">
+                    Groom
+                  </h1>
                   <Image
                     loading="eager"
                     src="/images/hero.jpg"
@@ -351,7 +358,7 @@ const HomePage = () => {
                     <p className={`font-serif text-xs`}>Tangkas Risdianto</p>
                   </div>
                 </motion.div>
-                <div className="font-serif text-gray-700 font-medium text-right mt-6 px-6">
+                <div className="font-serif text-gray-600 font-medium text-right mt-6 px-4">
                   <p className="text-[11px]">The Son of</p>
                   <p className="text-[11px]">Mr. Father and</p>
                   <p className="mb-4 text-[11px]">Mrs. Mother</p>
@@ -368,7 +375,7 @@ const HomePage = () => {
               onViewportEnter={() => controlsection5.start("visible")}
               onViewportLeave={() => controlsection5.start("hidden")}
               viewport={{ once: false }}
-              className="min-h-screen pb-20  relative w-full"
+              className="min-h-screen pb-20 mt-20  relative w-full"
             >
               <motion.div className="relative ms-auto w-full h-110 ">
                 <Image
@@ -380,36 +387,39 @@ const HomePage = () => {
                   sizes="100vw"
                 />
                 <p
-                  className={`font-moontime z-40 text-6xl w-full -rotate-10 absolute left-8 -bottom-20 text-red-900`}
+                  className={`leading-16 font-moontime z-40 text-7xl w-full -rotate-8 absolute left-8 -bottom-22 text-red-900`}
                 >
                   Our Love <br /> Story
                 </p>
               </motion.div>
               <div
-                className={`font-serif text-gray-500 text-xs text-right mt-16 px-6 max-w-[66%] ms-auto`}
+                className={`font-serif text-gray-600 text-xs text-right mt-16 px-4 max-w-[60%] ms-auto`}
               >
                 <p className="mb-4">
-                  We first met on a cool day, introduced by a friend, and
-                  somehow the conversation just flowed. What started with small
-                  talk quickly turned into laughter we didn’t want to end. From
-                  that moment, something simple yet special began between us.
+                  We first met on a pleasant day, introduced by a mutual friend,
+                  and what began as a simple conversation soon flowed
+                  effortlessly. What started with light exchanges quickly turned
+                  into shared laughter we wished would never end. In that
+                  moment, something meaningful and special quietly began to grow
+                  between us.
                 </p>
                 <p className="mb-4">
-                  As time went by, we grew together through all kinds of
-                  moments— the easy ones and the challenging ones. We learned,
-                  we laughed, and we supported each other along the way. Slowly,
-                  we realized that this journey was one we wanted to continue
-                  side by side.
+                  As time passed, we journeyed together through both joyful and
+                  challenging moments. We learned from one another, shared
+                  countless memories, and offered unwavering support along the
+                  way. Gradually, we came to realize that this was a path we
+                  wished to continue—side by side, hand in hand.
                 </p>
                 <p className="">
-                  Now, we’re ready to take the next step and start a new chapter
-                  together. With happy hearts, we invite you to celebrate this
-                  special moment with us on{" "}
+                  Now, we are ready to take the next step and begin a new
+                  chapter of our lives together. With hearts full of joy, we
+                  warmly invite you to celebrate this special occasion with us
+                  on{" "}
                   <span className="font-bold text-red-900">June 7, 2026</span>,
-                  as we begin our forever.
+                  as we embark on our journey of forever.
                 </p>
               </div>
-              <p className="font-serif mt-8  px-6 flex gap-1 items-center justify-end text-red-900 font-semibold">
+              <p className="font-serif mt-8  px-4 flex gap-1 items-center justify-end text-red-900 font-semibold">
                 <span className="text-[10px]">Met ’24</span>
                 <span className="h-px w-4 bg-red-900"></span>
                 <span className="text-[10px]">Wed ’26</span>
@@ -425,7 +435,7 @@ const HomePage = () => {
               onViewportEnter={() => controlsection6.start("visible")}
               onViewportLeave={() => controlsection6.start("hidden")}
               viewport={{ once: false }}
-              className="min-h-screen pb-40  relative w-full"
+              className="min-h-screen pb-40 mt-20 relative w-full"
             >
               <p className="rounded-full font-sans font-semibold z-20 mb-4 text-red-950 -rotate-90 absolute left-4.5 top-4 text-xs w-fit">
                 The Day
@@ -446,36 +456,33 @@ const HomePage = () => {
                   Our Special <br /> Day
                 </p>
               </motion.div>
-              <div className="w-[1.5px] bg-red-950 absolute left-10 top-148 h-144 rounded-full"></div>
-              <div className="w-full bg-red-950 absolute left-0 top-280 h-0.5"></div>
-              <div className=" text-right mt-30 pr-6">
+              <div className="w-[1.5px] bg-red-950 absolute left-10 top-152 h-130 rounded-full"></div>
+              <div className="w-full bg-red-950 absolute left-0 top-268 h-0.5"></div>
+              <div className=" text-right mt-30 pr-4">
                 <p className="font-serif font-semibold text-lg text-red-950 mb-2">
                   Akad Nikah
                 </p>
-                <p className="text-[11px] text-gray-500 font-serif">
-                  {"("}Reserved for you{")"}
-                </p>
-                <p className="text-[11px] text-gray-500 font-serif">
+                <p className="text-[11px] text-gray-600 font-serif">
                   Sunday, June 7, 2026
                 </p>
-                <p className="text-[11px] text-gray-500 font-serif mb-10">
+                <p className="text-[11px] text-gray-600 font-serif mb-10">
                   09:00 WIB - finish
                 </p>
 
                 <p className="font-serif font-semibold text-lg text-red-950 mb-2">
                   Reception
                 </p>
-                <p className="text-[11px] text-gray-500 font-serif">
+                <p className="text-[11px] text-gray-600 font-serif">
                   Sunday, June 7, 2026
                 </p>
-                <p className="text-[11px] text-gray-500 font-serif mb-10">
+                <p className="text-[11px] text-gray-600 font-serif mb-10">
                   11:00 WIB - finish
                 </p>
 
                 <p className="font-serif font-semibold text-lg text-red-950 mb-2">
                   Location
                 </p>
-                <p className="mb-6 text-[11px] text-gray-500 font-serif">
+                <p className="mb-6 text-[11px] text-gray-600 font-serif">
                   Jl. Kirangga, Jetis Wetan, Pacarejo, <br />
                   Kec. Semanu, Kabupaten Gunungkidul, <br />
                   Daerah Istimewa Yogyakarta
@@ -487,11 +494,11 @@ const HomePage = () => {
                       "_blank"
                     )
                   }
-                  className="cursor-pointer mb-10 w-fit px-6 py-2 rounded bg-red-900 text-white text-xs font-bold"
+                  className="cursor-pointer mb-10 w-fit px-4 py-2 rounded bg-red-900 text-white text-xs font-bold"
                 >
                   SEE LOCATION
                 </button>
-                <div className="font-serif font-semibold flex items-center gap-4 ms-auto w-fit mb-4 text-sm">
+                <div className="font-sans text-gray-900 font-semibold flex items-center gap-1 ms-auto w-fit mb-4 text-[11px]">
                   <p>07</p>
                   <p>/</p>
                   <p>06</p>
@@ -499,10 +506,10 @@ const HomePage = () => {
                   <p>2026</p>
                 </div>
                 {/* ⏳ COUNTDOWN */}
-                <motion.section className="font-serif flex items-center ms-auto w-fit rounded text-red-900 bg-red-100">
+                <motion.section className="font-sans flex items-center ms-auto w-fit rounded text-red-900 bg-red-200/30">
                   {Object.entries(timeLeft).map(([key, value]) => (
-                    <motion.div key={key} className="text-xs  px-2 py-1">
-                      <p className="font-semibold text-[11px]">{value}</p>
+                    <motion.div key={key} className="px-2 py-1">
+                      <p className="font-semibold text-[10px]">{value}</p>
                       <p className="capitalize text-[8px]">{key}</p>
                     </motion.div>
                   ))}
@@ -554,10 +561,10 @@ const HomePage = () => {
                     />
                   </motion.div>
                 </div>
-                <div className="flex justify-end px-6 -mt-10">
+                <div className="flex justify-end px-4 -mt-10">
                   <Link
                     href={"/gallery"}
-                    className="cursor-pointer mb-10 w-fit px-6 py-2 rounded bg-red-900 text-white text-xs font-bold"
+                    className="cursor-pointer mb-10 w-fit px-4 py-2 rounded bg-red-900 text-white text-xs font-bold"
                   >
                     OPEN GALLERY
                   </Link>

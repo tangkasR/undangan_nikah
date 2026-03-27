@@ -46,7 +46,9 @@ const GalleryPage = () => {
         >
           <div className="overflow-x-hidden min-h-screen w-full flex flex-col justify-evenly">
             <div className="text-center px-8">
-              <p className={`font-moontime font-medium text-gray-900 mb-2`}>
+              <p
+                className={`text-lg font-moontime font-medium text-gray-900 mb-2`}
+              >
                 A Moment to Remember
               </p>
               <h1 className={`font-moontime text-4xl text-red-900 font-medium`}>
@@ -59,7 +61,7 @@ const GalleryPage = () => {
             </div>
 
             <p
-              className={`font-moontime px-8 text-center font-medium text-gray-900`}
+              className={`text-lg font-moontime px-8 text-center font-medium text-gray-900`}
             >
               From this day, forever begins
             </p>
