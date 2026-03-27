@@ -437,10 +437,10 @@ const HomePage = () => {
               viewport={{ once: false }}
               className="min-h-screen pb-40 mt-20 relative w-full"
             >
-              <p className="rounded-full font-sans font-semibold z-20 mb-4 text-red-950 -rotate-90 absolute left-4.5 top-4 text-xs w-fit">
+              <p className="rounded-full font-sans font-semibold z-20 mb-4 text-red-950 -rotate-90 absolute left-6 top-4 text-[9px] w-fit">
                 The Day
               </p>
-              <div className="w-[1.5px] bg-red-950 absolute left-10 top-14 h-98"></div>
+              <div className="w-[1.5px] bg-red-950 absolute left-10 top-12 h-100"></div>
               <motion.div className="relative ms-auto w-[80%] h-110 rounded-l-lg">
                 <Image
                   loading="eager"
@@ -451,12 +451,12 @@ const HomePage = () => {
                   sizes="100vw"
                 />
                 <p
-                  className={`font-moontime text-left z-20 mb-4 text-red-900 absolute -left-12 -bottom-38 text-5xl w-full`}
+                  className={`font-moontime text-left z-20 mb-4 text-red-900 absolute -left-12 -bottom-40 text-5xl w-full`}
                 >
                   Our Special <br /> Day
                 </p>
               </motion.div>
-              <div className="w-[1.5px] bg-red-950 absolute left-10 top-152 h-130 rounded-full"></div>
+              <div className="w-[1.5px] bg-red-950 absolute left-10 top-152 h-128 rounded-full"></div>
               <div className="w-full bg-red-950 absolute left-0 top-268 h-0.5"></div>
               <div className=" text-right mt-30 pr-4">
                 <p className="font-serif font-semibold text-lg text-red-950 mb-2">
