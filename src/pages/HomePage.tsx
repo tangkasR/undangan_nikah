@@ -251,13 +251,13 @@ const HomePage = () => {
             >
               <div className="relative h-fit w-full">
                 <p
-                  className={`z-50 -rotate-2 font-moontime text-red-900 absolute left-6 -top-10 text-6xl w-full`}
+                  className={`z-50 -rotate-2 font-moontime text-red-900 absolute left-4 -top-10 text-7xl w-full`}
                 >
                   Tangkas <br /> Ais
                 </p>
-                <div className="w-[1.5px] bg-red-900 absolute left-8 top-26 h-86"></div>
-                <div className="w-full bg-red-950 absolute left-0 top-100 h-0.5"></div>
-                <motion.div className="relative ms-auto w-[84%] h-110 rounded-l-lg overflow-hidden">
+                <div className="w-[1.5px] bg-red-900 absolute left-10 top-30 h-80"></div>
+                {/* <div className="w-full bg-red-950 absolute left-0 top-100 h-0.5"></div> */}
+                <motion.div className="relative ms-auto w-[80%] h-110 rounded-l-lg overflow-hidden">
                   <Image
                     loading="eager"
                     src="/images/hero.jpg"
@@ -451,7 +451,7 @@ const HomePage = () => {
                   sizes="100vw"
                 />
                 <p
-                  className={`font-moontime text-left z-20 mb-4 text-red-900 absolute -left-12 -bottom-40 text-5xl w-full`}
+                  className={`font-moontime text-left z-20 mb-4 text-red-900 absolute -left-12 -bottom-42 text-6xl w-full`}
                 >
                   Our Special <br /> Day
                 </p>

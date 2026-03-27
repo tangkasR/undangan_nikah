@@ -73,23 +73,19 @@ body {
 
 /* di styles/globals.css atau styles.css */
 @layer utilities {
-  /* scroll tipis & transparan */
+  /* Chrome, Safari, Edge */
   ::-webkit-scrollbar {
-    width: 4px; /* tipis */
-    height: 4px;
+    display: none;
   }
 
-  ::-webkit-scrollbar-track {
-    background: transparent; /* track transparan */
+  /* Firefox */
+  * {
+    scrollbar-width: none;
   }
 
-  ::-webkit-scrollbar-thumb {
-    background-color: #00000000; /* thumb tipis, samar */
-    border-radius: 9999px;
-  }
-
-  ::-webkit-scrollbar-thumb:hover {
-    background-color: rgba(0, 0, 0, 0); /* hover lebih jelas */
+  /* IE & Edge lama */
+  * {
+    -ms-overflow-style: none;
   }
 }
 
