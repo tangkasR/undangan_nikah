@@ -447,7 +447,7 @@ const HomePage = () => {
                   src="/images/hero.jpg"
                   alt="gallery"
                   fill
-                  className="object-cover rounded-lb-lg"
+                  className="object-cover rounded-l-lg"
                   sizes="100vw"
                 />
                 <p
