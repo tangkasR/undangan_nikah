@@ -236,7 +236,7 @@ function Section3() {
   const { scrollYProgress } = useScroll({ target: sectionRef, offset: ["start start", "end start"] });
   const imgScale  = useSpring(useTransform(scrollYProgress, [0, 1], [1, 0.78]), { stiffness: 100, damping: 30 });
   const imgBR     = useTransform(scrollYProgress, [0, 0.5], [0, 16]);
-  const ringOp    = useTransform(scrollYProgress, [0.05, 0.25], [0, 1]);
+  // const ringOp    = useTransform(scrollYProgress, [0.05, 0.25], [0, 1]);
 
   /* foto masuk dari kanan saat pertama kelihatan */
   const imgContRef = useRef(null);
@@ -271,10 +271,10 @@ function Section3() {
         {/* gambar */}
         <div ref={imgContRef} className="relative ms-auto w-[80%] h-110">
           {/* border ring muncul saat mengecil */}
-          <motion.div
+          {/* <motion.div
             style={{ borderRadius: imgBR, opacity: ringOp }}
             className="absolute inset-0 z-10 pointer-events-none rounded-l-lg"
-          />
+          /> */}
           <motion.div
             style={{ scale: imgScale, borderRadius: imgBR, overflow: "hidden" }}
             initial={{ x: 100, opacity: 0 }}
@@ -525,7 +525,7 @@ function Section7() {
         <div className="grid grid-cols-2">
           <div className="mt-16 relative w-full h-110 overflow-hidden">
             <motion.div style={{ borderRadius: brL, opacity: ringOp }}
-              className="absolute inset-0 z-10 pointer-events-none ring-[1.5px] ring-red-900/30" />
+              className="absolute inset-0 z-10 pointer-events-none" />
             <motion.div style={{ scale: scaleL, borderRadius: brL }}
               className="relative w-full h-full overflow-hidden">
               <Image loading="eager" src="/images/hero.jpg" alt="gallery left" fill className="object-cover" sizes="100vw" />
@@ -533,7 +533,7 @@ function Section7() {
           </div>
           <div className="relative w-full h-110 overflow-hidden">
             <motion.div style={{ borderRadius: brR, opacity: ringOp }}
-              className="absolute inset-0 z-10 pointer-events-none ring-[1.5px] ring-red-900/30" />
+              className="absolute inset-0 z-10 pointer-events-none" />
             <motion.div style={{ scale: scaleR, borderRadius: brR }}
               className="relative w-full h-full overflow-hidden">
               <Image loading="eager" src="/images/hero.jpg" alt="gallery right" fill className="object-cover" sizes="100vw" />
