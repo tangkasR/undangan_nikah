@@ -64,7 +64,7 @@ const GalleryPage = () => {
           <Link
             href="/"
             className="
-              fixed bottom-6 left-1/2 -translate-x-1/2 z-[999]
+              fixed bottom-6 left-1/2 -translate-x-1/2 z-999
               w-10 h-10
               flex items-center justify-center
               rounded-full
