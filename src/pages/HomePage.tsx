@@ -276,7 +276,11 @@ function Section3() {
             className="absolute inset-0 z-10 pointer-events-none rounded-l-lg"
           /> */}
           <motion.div
-            style={{ scale: imgScale, borderRadius: imgBR, overflow: "hidden" }}
+            style={{ scale: imgScale, borderRadius: imgBR, overflow: "hidden",
+              translateZ: 0, 
+              backfaceVisibility: "hidden",
+              willChange: "transform",
+            }}
             initial={{ x: 100, opacity: 0 }}
             animate={imgInView ? { x: 0, opacity: 1 } : { x: 100, opacity: 0 }}
             transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1] }}
@@ -342,7 +346,11 @@ function Section4() {
         <SlideIn from="left" className="absolute left-6 -top-6 z-50">
           <h1 className="font-moontime text-7xl text-red-900">Bride</h1>
         </SlideIn>
-        <motion.div style={{ scale: brideScale , borderRadius: imgBRBridge, overflow: "hidden"}} className="relative w-full h-full origin-center">
+        <motion.div style={{ scale: brideScale , borderRadius: imgBRBridge, overflow: "hidden",
+          translateZ: 0, 
+          backfaceVisibility: "hidden",
+          willChange: "transform", 
+        }} className="bg-transparent relative w-full h-full origin-center">
           <div className="px-4 pb-2 z-50 absolute bottom-0 flex justify-between w-full text-white">
             <p className="font-serif text-xs">Puspitalia Dwi Aisah</p>
             <p className="text-gray-200 flex items-center gap-1 text-[9px]"><GrInstagram className="text-[10px]" /><span>@aiskw_</span></p>
@@ -363,7 +371,11 @@ function Section4() {
         <SlideIn from="right" className="absolute right-4 -top-6 z-50">
           <h1 className="font-moontime text-7xl text-red-900">Groom</h1>
         </SlideIn>
-        <motion.div style={{ scale: groomScale , borderRadius: imgBRGroom, overflow: "hidden"}} className="relative w-full h-full origin-center">
+        <motion.div style={{ scale: groomScale , borderRadius: imgBRGroom, overflow: "hidden", 
+          translateZ: 0, 
+          backfaceVisibility: "hidden",
+          willChange: "transform",  
+        }} className="bg-transparent relative w-full h-full origin-center">
           <div className="px-4 pb-2 z-50 absolute bottom-0 flex justify-between w-full text-white">
             <p className="text-gray-200 flex items-center gap-1 text-[9px]"><GrInstagram className="text-[10px]" /><span>@tangkasr_</span></p>
             <p className="font-serif text-xs">Tangkas Risdianto</p>
