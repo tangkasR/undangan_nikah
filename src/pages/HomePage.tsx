@@ -359,7 +359,7 @@ function Section4() {
         </motion.div>
       </div>
       <RevealUp delay={0.1}>
-        <div className="font-serif text-gray-600 font-medium text-left px-10 mb-10">
+        <div className="font-serif text-gray-600 font-medium text-left -mt-4 px-9 mb-10">
           <p className="text-[11px]">The Daughter of</p>
           <p className="text-[11px]">Mr. Father and</p>
           <p className="mb-4 text-[11px]">Mrs. Mother</p>
@@ -384,7 +384,7 @@ function Section4() {
         </motion.div>
       </div>
       <RevealUp delay={0.1}>
-        <div className="font-serif text-gray-600 font-medium text-right px-10 pb-20">
+        <div className="font-serif text-gray-600 font-medium text-right -mt-4 px-9 pb-20">
           <p className="text-[11px]">The Son of</p>
           <p className="text-[11px]">Mr. Father and</p>
           <p className="mb-4 text-[11px]">Mrs. Mother</p>
