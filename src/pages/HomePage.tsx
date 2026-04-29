@@ -269,7 +269,7 @@ function Section3() {
         </div>
 
         {/* gambar */}
-        <div ref={imgContRef} className="relative ms-auto w-[80%] h-110">
+        <div ref={imgContRef} className="relative ms-auto w-[80%] h-110 bg-white">
           {/* border ring muncul saat mengecil */}
           <motion.div
             style={{ borderRadius: imgBR, opacity: ringOp }}
@@ -311,12 +311,12 @@ function Section4() {
 
   const brideRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress: bS } = useScroll({ target: brideRef, offset: ["start end", "end start"] });
-  const brideScale = useSpring(useTransform(bS, [0, 0.6], [1.1, 0.9]), { stiffness: 80, damping: 25 });
+  const brideScale = useSpring(useTransform(bS, [0, 0.6], [1, 0.9]), { stiffness: 80, damping: 25 });
   const imgBRBridge = useTransform(bS, [0, 0.5], [0, 12]);
 
   const groomRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress: gS } = useScroll({ target: groomRef, offset: ["start end", "end start"] });
-  const groomScale = useSpring(useTransform(gS, [0, 0.6], [1.1, 0.9]), { stiffness: 80, damping: 25 });
+  const groomScale = useSpring(useTransform(gS, [0, 0.6], [1, 0.9]), { stiffness: 80, damping: 25 });
   const imgBRGroom  = useTransform(gS, [0, 0.5], [0, 12]);
 
 
@@ -338,7 +338,7 @@ function Section4() {
       </RevealUp>
 
       {/* Bride */}
-      <div ref={brideRef} className="relative w-full mt-16 h-110">
+      <div ref={brideRef} className="relative w-full mt-16 h-110 bg-white">
         <SlideIn from="left" className="absolute left-6 -top-6 z-50">
           <h1 className="font-moontime text-7xl text-red-900">Bride</h1>
         </SlideIn>
@@ -351,7 +351,7 @@ function Section4() {
         </motion.div>
       </div>
       <RevealUp delay={0.1}>
-        <div className="font-serif text-gray-600 font-medium text-left mt-6 px-6 mb-10">
+        <div className="font-serif text-gray-600 font-medium text-left px-6 mb-10">
           <p className="text-[11px]">The Daughter of</p>
           <p className="text-[11px]">Mr. Father and</p>
           <p className="mb-4 text-[11px]">Mrs. Mother</p>
@@ -359,7 +359,7 @@ function Section4() {
       </RevealUp>
 
       {/* Groom */}
-      <div ref={groomRef} className="relative w-full mt-16 h-110">
+      <div ref={groomRef} className="relative w-full mt-16 h-110 bg-white">
         <SlideIn from="right" className="absolute right-4 -top-6 z-50">
           <h1 className="font-moontime text-7xl text-red-900">Groom</h1>
         </SlideIn>
@@ -372,7 +372,7 @@ function Section4() {
         </motion.div>
       </div>
       <RevealUp delay={0.1}>
-        <div className="font-serif text-gray-600 font-medium text-right mt-6 px-6 pb-20">
+        <div className="font-serif text-gray-600 font-medium text-right px-6 pb-20">
           <p className="text-[11px]">The Son of</p>
           <p className="text-[11px]">Mr. Father and</p>
           <p className="mb-4 text-[11px]">Mrs. Mother</p>
@@ -508,8 +508,8 @@ function Section7() {
   const { scrollYProgress } = useScroll({ target: sectionRef, offset: ["start end", "center center"] });
 
   /* gambar membesar dari kecil ke ukuran asli */
-  const scaleL  = useSpring(useTransform(scrollYProgress, [0, 1], [0.8, 1]), { stiffness: 80, damping: 25 });
-  const scaleR  = useSpring(useTransform(scrollYProgress, [0, 1], [0.8, 1]), { stiffness: 80, damping: 25 });
+  const scaleL  = useSpring(useTransform(scrollYProgress, [0, 1], [0.8, 1.05]), { stiffness: 80, damping: 25 });
+  const scaleR  = useSpring(useTransform(scrollYProgress, [0, 1], [0.8, 1.05]), { stiffness: 80, damping: 25 });
   /* border radius dan ring hilang saat sudah full */
   const brL     = useTransform(scrollYProgress, [0, 0.85], [16, 0]);
   const brR     = useTransform(scrollYProgress, [0, 0.85], [16, 0]);
