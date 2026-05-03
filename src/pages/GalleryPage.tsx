@@ -30,9 +30,9 @@ const GalleryPage = () => {
           className="relative overflow-x-hidden min-h-screen w-full"
         >
           {/* Header */}
-          <div className="absolute top-0 left-0 right-0 z-50 text-center pt-8 px-8 pointer-events-none">
+          <div className="bg-linear-to-b from-black via-black/70 to-transparent absolute top-0 left-0 right-0 z-50 text-center pt-8 px-8 pb-24 pointer-events-none">
             <p
-              className="text-sm uppercase text-white/70 font-light mb-1 tracking-widest"
+              className="text-[9px] uppercase text-white/70 font-light mb-1 tracking-widest"
               style={{ fontFamily: "'Playfair Display', serif" }}
             >
               A Moment to Remember
@@ -49,11 +49,13 @@ const GalleryPage = () => {
 
           {/* Quote footer — diberi margin-bottom agar tidak tertutup tombol X (h-10 + gap = ~72px) */}
           <div
-            className="absolute bottom-0 left-0 right-0 z-[60] text-center pointer-events-none"
-            style={{ paddingBottom: "5rem" }}  /* 80px — di atas tombol X 40px + gap 40px */
+            className="pt-24 bg-linear-to-t from-black via-black/70 to-transparent absolute bottom-0 left-0 right-0 z-[60] text-center pointer-events-none"
+            style={{
+              paddingBottom: "5rem",
+            }} /* 80px — di atas tombol X 40px + gap 40px */
           >
             <p
-              className="text-sm text-white/80 italic tracking-wide drop-shadow"
+              className="text-xs text-white/80 italic tracking-wide drop-shadow"
               style={{ fontFamily: "'Playfair Display', serif" }}
             >
               From this day, forever begins
