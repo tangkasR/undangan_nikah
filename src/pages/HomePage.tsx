@@ -374,7 +374,7 @@ function Section3() {
     >
       <div className="relative h-fit w-full">
         {/* nama besar kiri */}
-        <SlideIn from="left" className="absolute left-4 -top-14 z-50">
+        <SlideIn from="left" className="absolute left-4 -top-12 z-50">
           <p className="-rotate-2 font-moontime text-red-900 text-7xl leading-14">
             Tangkas <br /> Ais
           </p>
