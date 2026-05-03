@@ -192,10 +192,10 @@ function FloatingHearts() {
 const HomePage = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [timeLeft, setTimeLeft] = useState({
-    days: 0,
-    hours: 0,
-    minutes: 0,
-    seconds: 0,
+    hari: 0,
+    jam: 0,
+    menit: 0,
+    detik: 0,
   });
 
   useEffect(() => {
@@ -203,10 +203,10 @@ const HomePage = () => {
       const diff = weddingDate.diff(dayjs());
       if (diff <= 0) return;
       setTimeLeft({
-        days: Math.floor(diff / 86400000),
-        hours: Math.floor((diff / 3600000) % 24),
-        minutes: Math.floor((diff / 60000) % 60),
-        seconds: Math.floor((diff / 1000) % 60),
+        hari: Math.floor(diff / 86400000),
+        jam: Math.floor((diff / 3600000) % 24),
+        menit: Math.floor((diff / 60000) % 60),
+        detik: Math.floor((diff / 1000) % 60),
       });
     }, 1000);
     return () => clearInterval(interval);
@@ -670,7 +670,7 @@ function Section5() {
 function Section6({
   timeLeft,
 }: {
-  timeLeft: { days: number; hours: number; minutes: number; seconds: number };
+  timeLeft: { hari: number; jam: number; menit: number; detik: number };
 }) {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
@@ -799,7 +799,7 @@ function Section6({
 // function Section6({
 //   timeLeft,
 // }: {
-//   timeLeft: { days: number; hours: number; minutes: number; seconds: number };
+//   timeLeft: { hari: number; jam: number; menit: number; detik: number };
 // }) {
 //   const ref = useRef<HTMLDivElement>(null);
 //   const { scrollYProgress } = useScroll({
