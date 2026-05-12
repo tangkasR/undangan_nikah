@@ -686,7 +686,7 @@ function Section6({
   const ref2 = useRef<HTMLDivElement>(null);
   const { scrollYProgress: scrollYProgress2 } = useScroll({
     target: ref2,
-    offset: ["start 1", "end 0.4"],
+    offset: ["start 1.8", "end 0.2"],
   });
   // ← tambah ini, pakai scrollYProgress yang sama tapi range berbeda
   const line2Progress = useTransform(scrollYProgress2, [0.4, 0.85], [0, 1]);
