@@ -60,7 +60,7 @@ const PHOTOS = Array.from({ length: 25 }, (_, i) => ({
     "Bisikan Angin Laut",
     "Janji di Tepi Ombak",
     "Dua Menjadi Satu",
-    "Dua Menjadi Satu2",
+    "Cerita Kita",
   ][i],
   pos: [
     "50% 25%",
