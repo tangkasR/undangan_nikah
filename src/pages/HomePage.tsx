@@ -526,7 +526,7 @@ function Section4() {
           </div>
           <Image
             loading="eager"
-            src="/images/img-section4-bridge5.jpeg"
+            src="/images/img-section4-bridge5.jpg"
             alt="bride"
             fill
             className="object-cover"
@@ -566,7 +566,7 @@ function Section4() {
           </div>
           <Image
             loading="eager"
-            src="/images/img-section4-groom2.jpeg"
+            src="/images/img-section4-groom2.jpg"
             alt="groom"
             fill
             className="object-cover"
