@@ -518,11 +518,11 @@ function Section4() {
           }}
           className="bg-transparent relative w-full h-full origin-center"
         >
-          <div className="px-4 pb-2 z-50 absolute bottom-0 flex justify-between w-full text-white">
+          <div className="px-4 pb-2 z-50 absolute bottom-0 flex justify-end w-full text-white">
             <p className="font-serif text-xs">Puspitalia Dwi Aisah</p>
-            <p className="text-gray-200 flex items-center gap-1 text-[9px]">
+            {/* <p className="text-gray-200 flex items-center gap-1 text-[9px]">
               <span>@aiskw_</span>
-            </p>
+            </p> */}
           </div>
           <Image
             loading="eager"
@@ -558,10 +558,10 @@ function Section4() {
           }}
           className="bg-transparent relative w-full h-full origin-center"
         >
-          <div className="px-4 pb-2 z-50 absolute bottom-0 flex justify-between w-full text-white">
-            <p className="text-gray-200 flex items-center gap-1 text-[9px]">
+          <div className="px-4 pb-2 z-50 absolute bottom-0 flex justify-start w-full text-white">
+            {/* <p className="text-gray-200 flex items-center gap-1 text-[9px]">
               <span>@tangkasr_</span>
-            </p>
+            </p> */}
             <p className="font-serif text-xs">Tangkas Risdianto</p>
           </div>
           <Image
@@ -764,8 +764,8 @@ function Section6({
             Lokasi
           </p>
           <p className="mb-6 font-serif text-gray-600 text-xs">
-            Jl. Kirangga, Jetis Wetan, Pacarejo, <br /> Kec. Semanu, Kabupaten
-            Gunungkidul, <br /> Daerah Istimewa Yogyakarta
+            Jl. Kirangga, Jetis Wetan Rt 03 / Rw 01, Pacarejo, <br /> Kec.
+            Semanu, Kabupaten Gunungkidul, <br /> Daerah Istimewa Yogyakarta
           </p>
           <button
             onClick={() =>
@@ -1008,7 +1008,7 @@ function Section7() {
           </div>
         </div>
         <RevealUp delay={0.2}>
-          <div className="flex justify-end px-4 mt-4 pb-10">
+          <div className="flex justify-end -mt-8 pr-4 pb-10">
             <Link
               href="/gallery"
               className="cursor-pointer w-fit px-4 py-2 rounded bg-red-900 text-white text-xs font-bold"
