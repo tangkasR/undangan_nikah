@@ -468,7 +468,7 @@ function Section4() {
     target: groomRef,
     offset: ["start end", "end start"],
   });
-  const groomScale = useSpring(useTransform(gS, [0, 0.6], [1, 0.85]), {
+  const groomScale = useSpring(useTransform(gS, [0, 0.6], [1, 0.84]), {
     stiffness: 80,
     damping: 25,
   });
@@ -686,7 +686,7 @@ function Section6({
   const ref2 = useRef<HTMLDivElement>(null);
   const { scrollYProgress: scrollYProgress2 } = useScroll({
     target: ref2,
-    offset: ["start end", "center center"],
+    offset: ["start 1", "end 0.4"],
   });
   // ← tambah ini, pakai scrollYProgress yang sama tapi range berbeda
   const line2Progress = useTransform(scrollYProgress2, [0.4, 0.85], [0, 1]);
