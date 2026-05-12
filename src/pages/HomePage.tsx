@@ -709,7 +709,7 @@ function Section6({
         />
       </div>
 
-      <div className="relative ms-auto w-[85%] h-110 rounded-l-lg overflow-hidden">
+      <div className="relative ms-auto w-[80%] h-110 rounded-l-lg overflow-hidden">
         <motion.div
           style={{ scale: imgScale }}
           className="relative w-full h-full"
