@@ -773,7 +773,7 @@ function Section6({
             }
             className="cursor-pointer mb-8 w-fit px-4 py-2 rounded bg-red-900 text-white text-xs font-bold"
           >
-            Google Map
+            Google Maps
           </button>
           <div className="font-sans text-gray-900 font-semibold flex items-center gap-1 ms-auto w-fit mb-4 text-[11px]">
             <p>07</p>
