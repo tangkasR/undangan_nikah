@@ -4,57 +4,128 @@ import Image from "next/image";
 import { useCallback, useEffect, useRef, useState } from "react";
 
 /* ══════════════════════════════════════════
-   DATA — 20 foto, semua pakai dummy image
+   DATA — 24 foto
 ══════════════════════════════════════════ */
-const DUMMY = "/images/templateimg.jpg";
-
-const PHOTOS = Array.from({ length: 20 }, (_, i) => ({
+const PHOTOS = Array.from({ length: 25 }, (_, i) => ({
   id: i,
-  src: DUMMY,
-  label: [
-    "Momen Indah", "Cerita Kita", "Selalu Bersama", "Langkah Berdua",
-    "Rasa Bahagia", "Dalam Pelukan", "Tatapan Manis", "Satu Hati",
-    "Waktu Berharga", "Cinta Sederhana", "Dekat Denganmu", "Bintang Malam",
-    "Pelangi Hati", "Tempat Pulang", "Harmoni Cinta", "Ruang Kenangan",
-    "Bahagia Bersama", "Cerita Manis", "Senyum Hari Ini", "Abadi Bersama",
+  src: [
+    "/images/gallery/studio1-1.jpg",
+    "/images/gallery/studio2-1.jpg",
+    "/images/gallery/studio3.jpg",
+    "/images/gallery/studio4.jpg",
+    "/images/gallery/studio5.jpg",
+    "/images/gallery/studio6.jpg",
+    "/images/gallery/studio7-1.jpg",
+    "/images/gallery/studio8-3.jpg",
+    "/images/gallery/studio9-1.jpg",
+    "/images/gallery/studio10-1.jpg",
+    "/images/gallery/studio11-1.jpg",
+    "/images/gallery/mercusuar1-1.jpg",
+    "/images/gallery/mercusuar2.jpg",
+    "/images/gallery/mercusuar3.jpg",
+    "/images/gallery/mercusuar4-3.jpg",
+    "/images/gallery/mercusuar5.jpg",
+    "/images/gallery/mercusuar6.jpg",
+    "/images/gallery/mercusuar7.jpg",
+    "/images/gallery/mercusuar9-1.jpg",
+    "/images/gallery/mercusuar11-1.jpg",
+    "/images/gallery/mercusuar8-3.jpg",
+    "/images/gallery/pantai2.jpg",
+    "/images/gallery/pantai1-2.jpg",
+    "/images/gallery/pantai3-3.jpg",
+    "/images/gallery/pantai4.jpg",
   ][i],
-  // Vary object-position so each "feels" different
+  label: [
+    "Sejak Pertama Kali",
+    "Di Antara Kita",
+    "Genggam Tanganku",
+    "Selalu Bersamamu",
+    "Satu Langkah Lagi",
+    "Dekat di Hati",
+    "Tatapan Terdalam",
+    "Dalam Diamku",
+    "Rumah Itu Dirimu",
+    "Jarak Tak Berarti",
+    "Kamu, Segalanya",
+    "Di Tepi Cahaya",
+    "Malam yang Hangat",
+    "Denyut yang Sama",
+    "Selamanya Bersamamu",
+    "Nafas Terakhirku",
+    "Cinta Itu Sunyi",
+    "Kenangan Abadi",
+    "Tempat Aku Pulang",
+    "Sayap Untuk Terbang",
+    "Senja Milik Kita",
+    "Bisikan Angin Laut",
+    "Janji di Tepi Ombak",
+    "Dua Menjadi Satu",
+    "Dua Menjadi Satu2",
+  ][i],
   pos: [
-    "50% 25%","45% 55%","60% 45%","50% 70%","35% 40%",
-    "65% 35%","50% 15%","40% 60%","55% 45%","50% 60%",
-    "38% 30%","62% 40%","50% 80%","44% 50%","56% 50%",
-    "50% 22%","36% 58%","64% 58%","50% 68%","48% 42%",
+    "50% 25%",
+    "45% 55%",
+    "60% 45%",
+    "50% 70%",
+    "35% 40%",
+    "65% 35%",
+    "50% 15%",
+    "40% 60%",
+    "55% 45%",
+    "50% 60%",
+    "38% 30%",
+    "62% 40%",
+    "50% 80%",
+    "44% 50%",
+    "56% 50%",
+    "50% 22%",
+    "36% 58%",
+    "64% 58%",
+    "50% 68%",
+    "48% 42%",
+    "52% 38%",
+    "50% 72%",
+    "44% 30%",
+    "56% 62%",
+    "56% 62%",
   ][i],
 }));
 
 /* ══════════════════════════════════════════
-   PORTRAIT-ONLY GRID PLACEMENTS
-   3-col grid, row-unit = base height
-   All items: colSpan ≤ rowSpan (portrait/square)
-   No gaps — every cell filled.
+   PLACEMENTS — 24 items, all portrait/square
+   Items 0-19: original layout unchanged
+   Items 20-23: new rows 13-15
+   No overlaps. No landscape.
 ══════════════════════════════════════════ */
 // [colStart, rowStart, colSpan, rowSpan]
 const PLACEMENTS: [number, number, number, number][] = [
-  [1, 1,  2, 2],  //  0  big 2×2    rows 1-2,   cols 1-2
-  [3, 1,  1, 2],  //  1  tall 1×2   rows 1-2,   col 3
-  [1, 3,  1, 2],  //  2  tall 1×2   rows 3-4,   col 1
-  [2, 3,  1, 1],  //  3  small      row 3,      col 2
-  [3, 3,  1, 1],  //  4  small      row 3,      col 3
-  [2, 4,  1, 1],  //  5  small      row 4,      col 2
-  [3, 4,  1, 1],  //  6  small      row 4,      col 3
-  [1, 5,  1, 1],  //  7  small      row 5,      col 1
-  [2, 5,  1, 1],  //  8  small      row 5,      col 2
-  [3, 5,  1, 2],  //  9  tall 1×2   rows 5-6,   col 3
-  [1, 6,  1, 1],  // 10  small      row 6,      col 1
-  [2, 6,  1, 1],  // 11  small      row 6,      col 2
-  [1, 7,  1, 2],  // 12  tall 1×2   rows 7-8,   col 1
-  [2, 7,  2, 2],  // 13  big 2×2    rows 7-8,   cols 2-3
-  [1, 9,  2, 2],  // 14  big 2×2    rows 9-10,  cols 1-2
-  [3, 9,  1, 2],  // 15  tall 1×2   rows 9-10,  col 3
-  [1, 11, 1, 2],  // 16  tall 1×2   rows 11-12, col 1
-  [2, 11, 1, 1],  // 17  small      row 11,     col 2
-  [3, 11, 1, 2],  // 18  tall 1×2   rows 11-12, col 3
-  [2, 12, 1, 1],  // 19  small      row 12,     col 2
+  // ── Items 0-19: unchanged ──
+  [1, 1, 2, 2], //  0  big 2×2     rows 1-2,   cols 1-2
+  [3, 1, 1, 2], //  1  tall 1×2    rows 1-2,   col 3
+  [1, 3, 1, 2], //  2  tall 1×2    rows 3-4,   col 1
+  [2, 3, 1, 1], //  3  small       row 3,      col 2
+  [3, 3, 1, 1], //  4  small       row 3,      col 3
+  [2, 4, 1, 1], //  5  small       row 4,      col 2
+  [3, 4, 1, 1], //  6  small       row 4,      col 3
+  [1, 5, 1, 1], //  7  small       row 5,      col 1
+  [2, 5, 1, 1], //  8  small       row 5,      col 2
+  [3, 5, 1, 2], //  9  tall 1×2    rows 5-6,   col 3
+  [1, 6, 1, 1], // 10  small       row 6,      col 1
+  [2, 6, 1, 1], // 11  small       row 6,      col 2
+  [1, 7, 1, 2], // 12  tall 1×2    rows 7-8,   col 1
+  [2, 7, 2, 2], // 13  big 2×2     rows 7-8,   cols 2-3
+  [1, 9, 2, 2], // 14  big 2×2     rows 9-10,  cols 1-2
+  [3, 9, 1, 2], // 15  tall 1×2    rows 9-10,  col 3
+  [1, 11, 1, 2], // 16  tall 1×2    rows 11-12, col 1
+  [2, 11, 1, 1], // 17  small       row 11,     col 2
+  [3, 11, 1, 2], // 18  tall 1×2    rows 11-12, col 3
+  [2, 12, 1, 1], // 19  small       row 12,     col 2
+  // ── Items 20-23: new rows 13-15 ──
+  [1, 13, 2, 2], // 20  big 2×2     rows 13-14, cols 1-2
+  [3, 13, 1, 2], // 21  tall 1×2    rows 13-14, col 3
+  [1, 15, 1, 1], // 22  small       row 15,     col 1
+  [2, 15, 1, 1], // 23  small       row 15,     col 2
+  [3, 15, 1, 1], // 23  small       row 15,     col 2
 ];
 
 /* ══════════════════════════════════════════
@@ -73,7 +144,6 @@ function Lightbox({
 }) {
   const photo = PHOTOS[index];
 
-  // Keyboard nav
   useEffect(() => {
     const fn = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();
@@ -84,7 +154,6 @@ function Lightbox({
     return () => window.removeEventListener("keydown", fn);
   }, [onClose, onPrev, onNext]);
 
-  // Touch swipe left/right
   const tx = useRef(0);
 
   return (
@@ -92,13 +161,18 @@ function Lightbox({
       className="fixed inset-0 z-[200] flex items-center justify-center"
       style={{ background: "rgba(10,6,4,0.96)", backdropFilter: "blur(8px)" }}
       onClick={onClose}
-      onTouchStart={(e) => { tx.current = e.touches[0].clientX; }}
+      onTouchStart={(e) => {
+        tx.current = e.touches[0].clientX;
+      }}
       onTouchEnd={(e) => {
         const dx = tx.current - e.changedTouches[0].clientX;
-        if (Math.abs(dx) > 50) { e.stopPropagation(); dx > 0 ? onNext() : onPrev(); }
+        if (Math.abs(dx) > 50) {
+          e.stopPropagation();
+          dx > 0 ? onNext() : onPrev();
+        }
       }}
     >
-      {/* Outer row: [←] [card] [→] */}
+      {/* [←] [card] [→] */}
       <div
         className="flex items-center gap-4 w-full"
         style={{ maxWidth: "min(420px, 94vw)", padding: "0 12px" }}
@@ -110,21 +184,31 @@ function Lightbox({
           disabled={index === 0}
           className="flex-shrink-0 flex items-center justify-center rounded-full transition-all duration-300"
           style={{
-            width: 40, height: 40,
+            width: 40,
+            height: 40,
             border: "1px solid rgba(255,255,255,0.2)",
             background: "rgba(255,255,255,0.08)",
-            color: index === 0 ? "rgba(255,255,255,0.2)" : "rgba(255,255,255,0.85)",
+            color:
+              index === 0 ? "rgba(255,255,255,0.2)" : "rgba(255,255,255,0.85)",
             cursor: index === 0 ? "default" : "pointer",
           }}
         >
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
             <polyline points="15 18 9 12 15 6" />
           </svg>
         </button>
 
         {/* CARD */}
         <div className="flex-1 flex flex-col gap-3 min-w-0">
-          {/* Image frame */}
           <div
             className="relative w-full overflow-hidden"
             style={{
@@ -143,45 +227,102 @@ function Lightbox({
               style={{ objectPosition: photo.pos }}
               sizes="420px"
             />
-            {/* Corner accents */}
-            {(["tl","tr","bl","br"] as const).map((c) => (
-              <span key={c} className="absolute pointer-events-none" style={{
-                width: 16, height: 16,
-                top:    c.startsWith("t") ? 0 : undefined,
-                bottom: c.startsWith("b") ? 0 : undefined,
-                left:   c.endsWith("l")  ? 0 : undefined,
-                right:  c.endsWith("r")  ? 0 : undefined,
-                borderTop:    c.startsWith("t") ? "1px solid rgba(255,255,255,0.45)" : undefined,
-                borderBottom: c.startsWith("b") ? "1px solid rgba(255,255,255,0.45)" : undefined,
-                borderLeft:   c.endsWith("l")   ? "1px solid rgba(255,255,255,0.45)" : undefined,
-                borderRight:  c.endsWith("r")   ? "1px solid rgba(255,255,255,0.45)" : undefined,
-              }} />
+            {(["tl", "tr", "bl", "br"] as const).map((corner) => (
+              <span
+                key={corner}
+                className="absolute pointer-events-none"
+                style={{
+                  width: 16,
+                  height: 16,
+                  top: corner[0] === "t" ? 0 : undefined,
+                  bottom: corner[0] === "b" ? 0 : undefined,
+                  left: corner[1] === "l" ? 0 : undefined,
+                  right: corner[1] === "r" ? 0 : undefined,
+                  borderTop:
+                    corner[0] === "t"
+                      ? "1px solid rgba(255,255,255,0.45)"
+                      : undefined,
+                  borderBottom:
+                    corner[0] === "b"
+                      ? "1px solid rgba(255,255,255,0.45)"
+                      : undefined,
+                  borderLeft:
+                    corner[1] === "l"
+                      ? "1px solid rgba(255,255,255,0.45)"
+                      : undefined,
+                  borderRight:
+                    corner[1] === "r"
+                      ? "1px solid rgba(255,255,255,0.45)"
+                      : undefined,
+                }}
+              />
             ))}
           </div>
 
-          {/* Meta */}
-          <div className="flex items-center justify-center gap-2 text-center">
-            <span style={{ fontFamily: "'Playfair Display', serif", fontSize: "0.78rem", color: "rgba(255,255,255,0.5)", letterSpacing: "0.1em" }}>
+          <div className="flex items-center justify-center gap-2">
+            <span
+              style={{
+                fontFamily: "'Playfair Display',serif",
+                fontSize: "0.78rem",
+                color: "rgba(255,255,255,0.5)",
+                letterSpacing: "0.1em",
+              }}
+            >
               {String(index + 1).padStart(2, "0")}
             </span>
-            <span style={{ width: 1, height: 10, background: "rgba(255,255,255,0.2)" }} />
-            <span style={{ fontFamily: "'Playfair Display', serif", fontSize: "0.8rem", fontStyle: "italic", color: "rgba(255,255,255,0.7)" }}>
+            <span
+              style={{
+                width: 1,
+                height: 10,
+                background: "rgba(255,255,255,0.2)",
+                flexShrink: 0,
+              }}
+            />
+            <span
+              style={{
+                fontFamily: "'Playfair Display',serif",
+                fontSize: "0.8rem",
+                fontStyle: "italic",
+                color: "rgba(255,255,255,0.75)",
+              }}
+            >
               {photo.label}
             </span>
-            <span style={{ width: 1, height: 10, background: "rgba(255,255,255,0.2)" }} />
-            <span style={{ fontFamily: "'Playfair Display', serif", fontSize: "0.75rem", color: "rgba(255,255,255,0.35)" }}>
+            <span
+              style={{
+                width: 1,
+                height: 10,
+                background: "rgba(255,255,255,0.2)",
+                flexShrink: 0,
+              }}
+            />
+            <span
+              style={{
+                fontFamily: "'Playfair Display',serif",
+                fontSize: "0.75rem",
+                color: "rgba(255,255,255,0.35)",
+              }}
+            >
               / {PHOTOS.length}
             </span>
           </div>
 
-          {/* Progress bar */}
-          <div style={{ height: 1, background: "rgba(255,255,255,0.1)", borderRadius: 1, overflow: "hidden" }}>
-            <div style={{
-              height: "100%",
-              width: `${((index + 1) / PHOTOS.length) * 100}%`,
-              background: "rgba(255,255,255,0.5)",
-              transition: "width 0.35s ease",
-            }} />
+          <div
+            style={{
+              height: 1,
+              background: "rgba(255,255,255,0.1)",
+              borderRadius: 1,
+              overflow: "hidden",
+            }}
+          >
+            <div
+              style={{
+                height: "100%",
+                width: `${((index + 1) / PHOTOS.length) * 100}%`,
+                background: "rgba(255,255,255,0.5)",
+                transition: "width 0.35s ease",
+              }}
+            />
           </div>
         </div>
 
@@ -191,14 +332,27 @@ function Lightbox({
           disabled={index === PHOTOS.length - 1}
           className="flex-shrink-0 flex items-center justify-center rounded-full transition-all duration-300"
           style={{
-            width: 40, height: 40,
+            width: 40,
+            height: 40,
             border: "1px solid rgba(255,255,255,0.2)",
             background: "rgba(255,255,255,0.08)",
-            color: index === PHOTOS.length - 1 ? "rgba(255,255,255,0.2)" : "rgba(255,255,255,0.85)",
+            color:
+              index === PHOTOS.length - 1
+                ? "rgba(255,255,255,0.2)"
+                : "rgba(255,255,255,0.85)",
             cursor: index === PHOTOS.length - 1 ? "default" : "pointer",
           }}
         >
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
             <polyline points="9 18 15 12 9 6" />
           </svg>
         </button>
@@ -209,15 +363,25 @@ function Lightbox({
         onClick={onClose}
         className="absolute top-4 right-4 flex items-center justify-center rounded-full transition-all duration-300"
         style={{
-          width: 36, height: 36,
+          width: 36,
+          height: 36,
           border: "1px solid rgba(255,255,255,0.2)",
           background: "rgba(255,255,255,0.08)",
           color: "rgba(255,255,255,0.7)",
           cursor: "pointer",
         }}
       >
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
-          <line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" />
+        <svg
+          width="14"
+          height="14"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+        >
+          <line x1="18" y1="6" x2="6" y2="18" />
+          <line x1="6" y1="6" x2="18" y2="18" />
         </svg>
       </button>
     </div>
@@ -225,27 +389,24 @@ function Lightbox({
 }
 
 /* ══════════════════════════════════════════
-   MAIN GALLERY SWIPER
+   GALLERY SWIPER — infinite vertical scroll
 ══════════════════════════════════════════ */
 export default function GallerySwiper() {
   const [active, setActive] = useState<number | null>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
 
-  // ── INFINITE AUTO-SCROLL ──
-  // We render photos 3× (triple) so when we reach end of first copy,
-  // we silently jump to the middle copy — user never sees a rewind.
-  const ROW_UNIT = 140; // px per row unit (matches grid-auto-rows)
-  const GAP = 4;        // gap between cells
-  // Total grid height: 12 rows × (ROW_UNIT + GAP) - GAP
-  const SINGLE_HEIGHT = 12 * (ROW_UNIT + GAP) - GAP;
+  const ROW_UNIT = 130; // px per row unit
+  const GAP = 4;
+  const TOTAL_ROWS = 15; // rows 1-15 (items 0-19 use rows 1-12, items 20-23 use rows 13-15)
+  const SINGLE_HEIGHT = TOTAL_ROWS * (ROW_UNIT + GAP) - GAP;
 
   const autoScrollRef = useRef<number>(0);
   const pausedRef = useRef(false);
-  const posRef = useRef(SINGLE_HEIGHT); // start at middle copy
+  const posRef = useRef(SINGLE_HEIGHT);
   const lastTimeRef = useRef<number>(0);
-  const SPEED = 40; // px per second
+  const SPEED = 38; // px/s
 
-  // Initialize scroll position to middle copy
+  // Start at middle copy for seamless loop
   useEffect(() => {
     if (scrollRef.current) {
       scrollRef.current.scrollTop = SINGLE_HEIGHT;
@@ -253,43 +414,41 @@ export default function GallerySwiper() {
     }
   }, [SINGLE_HEIGHT]);
 
-  const runScroll = useCallback((ts: number) => {
-    if (!lastTimeRef.current) lastTimeRef.current = ts;
-    const dt = (ts - lastTimeRef.current) / 1000;
-    lastTimeRef.current = ts;
+  const runScroll = useCallback(
+    (ts: number) => {
+      if (!lastTimeRef.current) lastTimeRef.current = ts;
+      const dt = (ts - lastTimeRef.current) / 1000;
+      lastTimeRef.current = ts;
 
-    if (!pausedRef.current && scrollRef.current) {
-      posRef.current += SPEED * dt;
-
-      // When we've scrolled past the end of the 2nd copy (into 3rd),
-      // silently jump back to start of 2nd copy — seamless loop
-      if (posRef.current >= SINGLE_HEIGHT * 2) {
-        posRef.current -= SINGLE_HEIGHT;
-        scrollRef.current.scrollTop = posRef.current;
-      } else {
-        scrollRef.current.scrollTop = posRef.current;
+      if (!pausedRef.current && scrollRef.current) {
+        posRef.current += SPEED * dt;
+        if (posRef.current >= SINGLE_HEIGHT * 2) {
+          posRef.current -= SINGLE_HEIGHT;
+          scrollRef.current.scrollTop = posRef.current;
+        } else {
+          scrollRef.current.scrollTop = posRef.current;
+        }
       }
-    }
-
-    autoScrollRef.current = requestAnimationFrame(runScroll);
-  }, [SINGLE_HEIGHT]);
+      autoScrollRef.current = requestAnimationFrame(runScroll);
+    },
+    [SINGLE_HEIGHT]
+  );
 
   useEffect(() => {
     autoScrollRef.current = requestAnimationFrame(runScroll);
     return () => cancelAnimationFrame(autoScrollRef.current);
   }, [runScroll]);
 
-  // Pause when lightbox is open
+  // Pause auto-scroll when lightbox is open
   useEffect(() => {
     pausedRef.current = active !== null;
   }, [active]);
 
-  // Manual scroll: sync posRef when user drags
+  // Sync posRef on manual scroll + wrap for infinite effect
   const onScroll = useCallback(() => {
     if (!scrollRef.current) return;
     const y = scrollRef.current.scrollTop;
     posRef.current = y;
-    // Wrap if needed
     if (y < SINGLE_HEIGHT * 0.5) {
       posRef.current = y + SINGLE_HEIGHT;
       scrollRef.current.scrollTop = posRef.current;
@@ -300,10 +459,16 @@ export default function GallerySwiper() {
   }, [SINGLE_HEIGHT]);
 
   const close = useCallback(() => setActive(null), []);
-  const prev  = useCallback(() => setActive((p) => (p !== null ? Math.max(0, p - 1) : 0)), []);
-  const next  = useCallback(() => setActive((p) => (p !== null ? Math.min(PHOTOS.length - 1, p + 1) : 0)), []);
+  const prev = useCallback(
+    () => setActive((p) => (p !== null ? Math.max(0, p - 1) : 0)),
+    []
+  );
+  const next = useCallback(
+    () =>
+      setActive((p) => (p !== null ? Math.min(PHOTOS.length - 1, p + 1) : 0)),
+    []
+  );
 
-  // Render one copy of the grid
   const renderGrid = (keyPrefix: string) => (
     <div
       key={keyPrefix}
@@ -319,9 +484,8 @@ export default function GallerySwiper() {
     >
       {PHOTOS.map((photo, i) => {
         const [cs, rs, csp, rsp] = PLACEMENTS[i];
-        const isWide = csp >= 2;
         return (
-          <div
+          <button
             key={`${keyPrefix}-${i}`}
             onClick={() => setActive(i)}
             style={{
@@ -331,6 +495,9 @@ export default function GallerySwiper() {
               overflow: "hidden",
               cursor: "pointer",
               borderRadius: 3,
+              border: "none",
+              padding: 0,
+              background: "#111",
             }}
           >
             <Image
@@ -343,48 +510,66 @@ export default function GallerySwiper() {
                 objectPosition: photo.pos,
                 transition: "transform 0.5s ease",
               }}
-              onMouseEnter={(e) => { (e.target as HTMLImageElement).style.transform = "scale(1.05)"; }}
-              onMouseLeave={(e) => { (e.target as HTMLImageElement).style.transform = "scale(1)"; }}
+              onMouseEnter={(e) => {
+                (e.currentTarget as HTMLImageElement).style.transform =
+                  "scale(1.05)";
+              }}
+              onMouseLeave={(e) => {
+                (e.currentTarget as HTMLImageElement).style.transform =
+                  "scale(1)";
+              }}
               loading={i < 6 ? "eager" : "lazy"}
             />
             {/* Hover overlay */}
             <div
-              className="absolute inset-0 pointer-events-none"
               style={{
-                background: "linear-gradient(180deg, transparent 50%, rgba(0,0,0,0.55) 100%)",
+                position: "absolute",
+                inset: 0,
+                pointerEvents: "none",
+                background:
+                  "linear-gradient(180deg, transparent 55%, rgba(0,0,0,0.6) 100%)",
                 opacity: 0,
                 transition: "opacity 0.35s",
               }}
-              onMouseEnter={(e) => { (e.currentTarget as HTMLDivElement).style.opacity = "1"; }}
-              onMouseLeave={(e) => { (e.currentTarget as HTMLDivElement).style.opacity = "0"; }}
+              onMouseEnter={(e) => {
+                (e.currentTarget as HTMLDivElement).style.opacity = "1";
+              }}
+              onMouseLeave={(e) => {
+                (e.currentTarget as HTMLDivElement).style.opacity = "0";
+              }}
             />
             {/* Label on hover */}
             <div
-              className="absolute bottom-0 left-0 right-0 pointer-events-none"
               style={{
-                padding: "6px 8px",
-                fontFamily: "'Playfair Display', serif",
-                fontSize: "clamp(0.5rem, 1.5vw, 0.65rem)",
+                position: "absolute",
+                bottom: 0,
+                left: 0,
+                right: 0,
+                padding: "5px 7px",
+                fontFamily: "'Playfair Display',serif",
+                fontSize: "clamp(0.48rem,1.4vw,0.62rem)",
                 fontStyle: "italic",
                 color: "rgba(255,255,255,0.9)",
                 textShadow: "0 1px 6px rgba(0,0,0,0.9)",
+                pointerEvents: "none",
                 opacity: 0,
-                transform: "translateY(4px)",
+                transform: "translateY(3px)",
                 transition: "opacity 0.35s, transform 0.35s",
               }}
-            />
-            {/* Gold dot accent on big items */}
-            {isWide && (
-              <div
-                className="absolute pointer-events-none"
-                style={{
-                  bottom: 8, right: 8, width: 5, height: 5,
-                  borderRadius: "50%",
-                  background: "rgba(255,255,255,0.4)",
-                }}
-              />
-            )}
-          </div>
+              onMouseEnter={(e) => {
+                const el = e.currentTarget as HTMLDivElement;
+                el.style.opacity = "1";
+                el.style.transform = "translateY(0)";
+              }}
+              onMouseLeave={(e) => {
+                const el = e.currentTarget as HTMLDivElement;
+                el.style.opacity = "0";
+                el.style.transform = "translateY(3px)";
+              }}
+            >
+              {photo.label}
+            </div>
+          </button>
         );
       })}
     </div>
@@ -392,21 +577,21 @@ export default function GallerySwiper() {
 
   return (
     <>
-      {/* SCROLL CONTAINER */}
+      {/* SCROLL CONTAINER — 3 copies for infinite loop */}
       <div
         ref={scrollRef}
         onScroll={onScroll}
-        style={{
-          width: "100%",
-          height: "100%",
-          overflowY: "scroll",
-          overflowX: "hidden",
-          scrollbarWidth: "none",
-          msOverflowStyle: "none",
-          background: "#0a0604",
-        } as React.CSSProperties}
+        style={
+          {
+            width: "100%",
+            height: "100%",
+            overflowY: "scroll",
+            overflowX: "hidden",
+            scrollbarWidth: "none",
+            background: "#080604",
+          } as React.CSSProperties
+        }
       >
-        {/* Render 3 copies for seamless infinite loop */}
         <div style={{ display: "flex", flexDirection: "column" }}>
           {renderGrid("copy-a")}
           {renderGrid("copy-b")}
