@@ -57,13 +57,27 @@ export default function RootLayout({
     setIsPlaying(!isPlaying);
   };
   return (
-    <html
-      lang="en"
-      className="h-full antialiased"
-    >
+    <html lang="en" className="h-full antialiased">
       <head>
-        <title>Undangan Nikahan Tangkas & Ais</title>
-        <meta name="description" content="Undangan Nikahan Tangkas & Ais" />
+        <title>Wedding Invitation | Tangkas & Ais</title>
+
+        <meta name="description" content="Wedding Invitation Tangkas & Ais" />
+
+        {/* FAVICON */}
+        <link rel="icon" href="/images/imglogo.png" />
+        <link rel="apple-touch-icon" href="/images/imglogo.png" />
+
+        {/* OPEN GRAPH */}
+        <meta
+          property="og:title"
+          content="Wedding Invitation | Tangkas & Ais"
+        />
+        <meta
+          property="og:description"
+          content="Wedding Invitation Tangkas & Ais"
+        />
+        <meta property="og:image" content="/images/imglogo.png" />
+
         <link
           href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Poppins:wght@300;400;500&display=swap"
           rel="stylesheet"
