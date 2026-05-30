@@ -764,12 +764,13 @@ function Section6({
             Lokasi
           </p>
           <p className="mb-6 font-serif text-gray-600 text-xs">
-            Jl. Kirangga, Jetis Wetan Rt 03 / Rw 01, Pacarejo, <br /> Kec.
-            Semanu, Kabupaten Gunungkidul, <br /> Daerah Istimewa Yogyakarta
+            Barat Masjid At-Taslim, Jetis Wetan Rt 03 / Rw 01, Pacarejo, <br />{" "}
+            Kec. Semanu, Kabupaten Gunungkidul, <br /> Daerah Istimewa
+            Yogyakarta
           </p>
           <button
             onClick={() =>
-              window.open("https://maps.app.goo.gl/3t7kpVXTEMmr6ecR8", "_blank")
+              window.open("https://maps.app.goo.gl/RFkoV9soePyfwdWV8", "_blank")
             }
             className="cursor-pointer mb-8 w-fit px-4 py-2 rounded bg-red-900 text-white text-xs font-bold"
           >
